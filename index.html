@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="color-scheme" content="light"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Renu Nilangekar — UX Researcher</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--ink:#131318;--ink2:#5C5C72;--ink3:#9A9AB0;--border:#E4E4EF;--bg:#F7F7FA;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;color-scheme:light;}
+:root{color-scheme:light;}
+body{background:#fff!important;forced-color-adjust:none;color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;padding:1rem 4rem;background:rgba(255,255,255,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none;white-space:nowrap;flex-shrink:0;}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none;flex-shrink:0;}
+.nav-links a{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);text-decoration:none;white-space:nowrap;}
+.nav-links a:hover{color:var(--ink);}
+.nav-links .resume{background:var(--ink);color:#fff!important;padding:.4rem 1rem;border-radius:100px;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:0;position:relative;background:radial-gradient(ellipse 70% 65% at 90% 10%,rgba(251,207,232,.95) 0%,transparent 65%),radial-gradient(ellipse 65% 60% at 5% 85%,rgba(254,215,170,.9) 0%,transparent 65%),radial-gradient(ellipse 58% 52% at 55% 95%,rgba(221,214,254,.85) 0%,transparent 65%),radial-gradient(ellipse 50% 46% at 22% 4%,rgba(253,186,116,.8) 0%,transparent 65%),radial-gradient(ellipse 45% 40% at 78% 72%,rgba(167,243,208,.65) 0%,transparent 60%),#fff;background-size:200% 200%;animation:gradmove 8s ease-in-out infinite alternate;}
+@keyframes gradmove{0%{background-position:0% 0%;}100%{background-position:100% 100%;}}
+.orbs{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+.hero-inner{position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;padding:8rem 4rem 5rem;}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--border);border-radius:100px;padding:.3rem .9rem;margin-bottom:1.8rem;font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);}
+.tag-dot{width:5px;height:5px;border-radius:50%;background:#16A34A;}
+.hero-h{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(2.8rem,5.5vw,5rem);line-height:1.05;letter-spacing:-.025em;color:var(--ink);margin-bottom:1.3rem;max-width:900px;}
+.hero-h em{font-style:italic;}
+.hero-p{font-size:.97rem;color:var(--ink2);max-width:820px;line-height:1.82;margin-bottom:2.4rem;}
+.hero-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--ink);color:#fff;text-decoration:none;padding:.75rem 1.8rem;border-radius:100px;font-size:.82rem;font-weight:500;letter-spacing:.04em;transition:opacity .2s;}
+.hero-btn:hover{opacity:.8;}
+
+/* TICKER */
+.ticker{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.68rem 0;overflow:hidden;position:relative;}
+.ticker::before,.ticker::after{content:'';position:absolute;top:0;bottom:0;z-index:2;width:60px;pointer-events:none;}
+.ticker::before{left:0;background:linear-gradient(to right,#fff,transparent);}
+.ticker::after{right:0;background:linear-gradient(to left,#fff,transparent);}
+.t-track{display:flex;width:max-content;animation:ticker 30s linear infinite;}
+.t-track span{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);padding:0 1.8rem;white-space:nowrap;}
+.t-track .sep{padding:0 .3rem;color:var(--border);}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* SECTION */
+.section{padding:5.5rem 4rem;max-width:1200px;margin:0 auto;}
+.section-full{padding:0;border-top:1px solid var(--border);}
+.section-full-inner{max-width:1200px;margin:0 auto;padding:5.5rem 4rem;}
+.sec-label{display:flex;align-items:center;gap:1rem;margin-bottom:3rem;}
+.sec-name{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);font-weight:500;white-space:nowrap;}
+.sec-line{flex:1;height:1px;background:var(--border);}
+
+/* WORK CARDS */
+.proj-list{list-style:none;display:flex;flex-direction:column;gap:1.5rem;}
+.pcard{display:grid;grid-template-columns:400px 1fr;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff;animation:cardIn .6s ease both;}
+.pcard:hover{box-shadow:0 12px 40px rgba(0,0,0,.08);transform:translateY(-2px);}
+.pc-a{animation-delay:.05s;}
+.pc-b{animation-delay:.18s;}
+.pc-c{animation-delay:.31s;}
+@keyframes cardIn{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+/* THUMBNAIL */
+.pcard-img{display:flex;align-items:center;justify-content:center;border-right:1px solid var(--border);min-height:260px;overflow:hidden;position:relative;background-size:300% 300%;}
+.pcard-img img{width:100%;height:100%;object-fit:cover;transform:scale(1);transition:transform .6s cubic-bezier(.25,.46,.45,.94);display:block;}
+.pcard:hover .pcard-img img{transform:scale(1.07);}
+.pcard-img::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.18) 50%,transparent 70%);background-size:200% 100%;animation:shimmer 3.2s ease-in-out infinite;pointer-events:none;z-index:2;opacity:0;transition:opacity .3s;}
+.pcard:hover .pcard-img::after{opacity:1;}
+@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}
+.pc-a .pcard-img{background:radial-gradient(ellipse 80% 80% at 20% 30%,#E8E2FF,transparent),radial-gradient(ellipse 60% 60% at 80% 70%,#D4CCEF,transparent),radial-gradient(ellipse 90% 90% at 50% 50%,#EDE9F8,#E0DAF2);background-size:300% 300%;animation:gradshift-a 6s ease infinite alternate,cardIn .6s ease both .05s;}
+.pc-b .pcard-img{background:radial-gradient(ellipse 80% 80% at 20% 30%,#D6E9F8,transparent),radial-gradient(ellipse 60% 60% at 80% 70%,#BDD8EF,transparent),radial-gradient(ellipse 90% 90% at 50% 50%,#E8EEF8,#DAEAF0);background-size:300% 300%;animation:gradshift-b 7s ease infinite alternate,cardIn .6s ease both .18s;}
+.pc-c .pcard-img{background:radial-gradient(ellipse 80% 80% at 20% 30%,#FFE8E0,transparent),radial-gradient(ellipse 60% 60% at 80% 70%,#F5D4CC,transparent),radial-gradient(ellipse 90% 90% at 50% 50%,#F8EDE9,#F2E0DA);background-size:300% 300%;animation:gradshift-c 8s ease infinite alternate,cardIn .6s ease both .31s;}
+@keyframes gradshift-a{0%{background-position:0% 50%,100% 50%,50% 0%;}100%{background-position:100% 50%,0% 50%,50% 100%;}}
+@keyframes gradshift-b{0%{background-position:100% 0%,0% 100%,50% 50%;}100%{background-position:0% 100%,100% 0%,50% 50%;}}
+@keyframes gradshift-c{0%{background-position:0% 100%,100% 0%,50% 50%;}100%{background-position:100% 0%,0% 100%,50% 50%;}}
+
+.pcard-body{padding:2.2rem 2.8rem;display:flex;flex-direction:column;justify-content:center;}
+.pcard-meta{font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem;}
+.pcard-type{border:1px solid var(--border);border-radius:100px;padding:.1rem .55rem;font-size:.5rem;}
+.pcard-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(1.8rem,2.8vw,2.4rem);line-height:1.05;letter-spacing:-.02em;color:var(--ink);margin-bottom:.8rem;}
+.pcard-desc{font-size:.88rem;color:var(--ink2);line-height:1.78;margin-bottom:1.3rem;}
+.pcard-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.5rem;}
+.pcard-tag{font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;padding:.16rem .62rem;border-radius:100px;border:1px solid var(--border);color:var(--ink3);}
+.pcard-link{display:inline-flex;align-items:center;gap:.45rem;font-size:.76rem;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:.12rem;width:fit-content;transition:opacity .2s,gap .2s;}
+.pcard-link:hover{opacity:.5;gap:.7rem;}
+
+/* ABOUT */
+.about-top{display:grid;grid-template-columns:260px 1fr;gap:4rem;align-items:start;margin-bottom:3rem;}
+.photo-wrap{position:relative;}
+.photo{aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:linear-gradient(155deg,#E8E5F5,#D4CEF0);display:block;position:relative;}
+
+.about-badge{position:absolute;top:.9rem;left:-1rem;background:var(--ink);color:#fff;border-radius:100px;padding:.32rem .8rem;font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;animation:fl 3s ease-in-out infinite;}
+@keyframes fl{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+.about-h{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(1.9rem,3vw,2.6rem);line-height:1.1;letter-spacing:-.022em;color:var(--ink);margin-bottom:1.4rem;}
+.about-h em{font-style:italic;}
+.about-p{font-size:.92rem;color:var(--ink2);line-height:1.88;margin-bottom:.9rem;}
+.skills-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+.sg{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;}
+.sg-lbl{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);display:block;margin-bottom:.65rem;}
+.sg-pills{display:flex;flex-wrap:wrap;gap:.35rem;}
+.pill{font-size:.7rem;padding:.22rem .7rem;background:#fff;border-radius:100px;color:var(--ink2);border:1px solid var(--border);transition:all .2s;}
+.pill:hover{background:var(--ink);border-color:var(--ink);color:#fff;}
+
+/* CONTACT */
+.contact-bg{background:var(--bg);padding:0;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;max-width:1200px;margin:0 auto;padding:5.5rem 4rem;}
+.contact-h{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(2.4rem,4.5vw,4rem);line-height:.95;letter-spacing:-.025em;color:var(--ink);}
+.contact-h em{font-style:italic;}
+.contact-p{font-size:.92rem;color:var(--ink2);line-height:1.82;margin-bottom:2rem;}
+.contact-cta{display:inline-flex;align-items:center;gap:.55rem;background:var(--ink);color:#fff;text-decoration:none;padding:.82rem 1.9rem;border-radius:100px;font-size:.82rem;font-weight:500;letter-spacing:.04em;transition:opacity .2s,transform .2s;}
+.contact-cta:hover{opacity:.85;transform:translateY(-2px);}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:1.6rem 4rem;display:flex;align-items:center;justify-content:space-between;background:#fff;}
+.f-copy{font-size:.7rem;color:var(--ink3);}
+.f-links{display:flex;gap:1.8rem;list-style:none;}
+.f-links a{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);text-decoration:none;}
+.f-links a:hover{color:var(--ink);}
+
+/* LIGHTBOX */
+.lb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;}
+.lb-overlay.open{display:flex;}
+.lb-overlay img{max-width:92vw;max-height:90vh;border-radius:8px;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+.lb-close{position:fixed;top:1.5rem;right:2rem;color:#fff;font-size:2rem;cursor:pointer;line-height:1;z-index:10000;background:none;border:none;opacity:.7;transition:opacity .2s;}
+.lb-close:hover{opacity:1;}
+
+/* RESPONSIVE — TABLET */
+@media(max-width:1024px){
+ .pcard{grid-template-columns:300px 1fr;}
+}
+
+/* RESPONSIVE — MOBILE */
+@media(max-width:900px){
+ nav{padding:.7rem 1rem;}
+ .nav-links{gap:.6rem;}
+ .nav-links a{font-size:.6rem;letter-spacing:.06em;}
+ .logo{font-size:.85rem;}
+ .nav-links .resume{padding:.32rem .7rem;font-size:.58rem;}
+ .hero-inner{padding:5.5rem 1.2rem 3.5rem;}
+ .section{padding:3.5rem 1.2rem;}
+ .section-full-inner{padding:3.5rem 1.2rem;} .contact-grid{padding:3.5rem 1.2rem;}
+ .pcard{grid-template-columns:1fr;}
+ .pcard-img{min-height:200px;border-right:none;border-bottom:1px solid var(--border);}
+ .pcard-body{padding:1.4rem;}
+ .about-top{grid-template-columns:1fr;gap:2rem;}
+ .about-badge{display:none;}
+ .skills-row{grid-template-columns:1fr;}
+ .contact-grid{grid-template-columns:1fr;gap:2rem;}
+ footer{padding:1.2rem;flex-direction:column;gap:.8rem;text-align:center;}
+}
+
+/* RESPONSIVE — SMALL MOBILE */
+@media(max-width:480px){
+ .hero-h{font-size:2.2rem;}
+ .pcard-title{font-size:1.6rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#">Renu Nilangekar</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#" class="resume">Resume</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="orbs"></div>
+  <div class="hero-inner">
+    <div class="hero-tag"><div class="tag-dot"></div>UX Researcher · Available for work</div>
+    <h1 class="hero-h">Researching complex systems<br/>to drive <em>product clarity.</em></h1>
+    <p class="hero-p">I turn complex problems into clear, research-backed design decisions. I work across fintech, supply chain, and travel — specialising in mixed-methods research, stakeholder alignment, and translating insights into product strategy that teams can actually act on.</p>
+    <a href="#work" class="hero-btn">View my work ↓</a>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="t-track">
+    <span>Mixed-Methods Research</span><span class="sep">·</span><span>Stakeholder Interviews</span><span class="sep">·</span><span>Usability Testing</span><span class="sep">·</span><span>Affinity Mapping</span><span class="sep">·</span><span>Journey Mapping</span><span class="sep">·</span><span>Heuristic Evaluation</span><span class="sep">·</span><span>Competitive Analysis</span><span class="sep">·</span><span>Service Design</span><span class="sep">·</span><span>Information Architecture</span><span class="sep">·</span><span>Mixed-Methods Research</span><span class="sep">·</span><span>Stakeholder Interviews</span><span class="sep">·</span><span>Usability Testing</span><span class="sep">·</span><span>Affinity Mapping</span><span class="sep">·</span><span>Journey Mapping</span><span class="sep">·</span><span>Heuristic Evaluation</span><span class="sep">·</span><span>Competitive Analysis</span><span class="sep">·</span><span>Service Design</span><span class="sep">·</span><span>Information Architecture</span><span class="sep">·</span>
+  </div>
+</div>
+
+<div class="section" id="work">
+  <div class="sec-label">
+    <span class="sec-name">Selected Work</span>
+    <div class="sec-line"></div>
+  </div>
+  <ul class="proj-list">
+
+    <li class="pcard pc-a">
+      <div class="pcard-img"><img src="wms-homepage-new.jpg" alt="WMS Onboarding — Get Started checklist"/></div>
+      <div class="pcard-body">
+        <div class="pcard-meta"><span>3 Months · Fynd</span><span class="pcard-type">Internship</span></div>
+        <h2 class="pcard-title">WMS Onboarding</h2>
+        <p class="pcard-desc">Improving onboarding workflows in complex warehouse management systems through on-site research and stakeholder insights — enhancing clarity and first-time user adoption for warehouse operators.</p>
+        <div class="pcard-tags"><span class="pcard-tag">On-site Research</span><span class="pcard-tag">B2B</span><span class="pcard-tag">Supply Chain</span><span class="pcard-tag">Webapp</span></div>
+        <a href="wms-cs.html" class="pcard-link">View Case Study →</a>
+      </div>
+    </li>
+
+    <li class="pcard pc-b">
+      <div class="pcard-img"><img src="th-app-screens.jpg" alt="Travel Hacks — app screens"/></div>
+      <div class="pcard-body">
+        <div class="pcard-meta"><span>9 Weeks · Harbour Space University</span><span class="pcard-type">Academic</span></div>
+        <h2 class="pcard-title">Travel Hacks</h2>
+        <p class="pcard-desc">Uncovering Gen Z backpacker needs for Lonely Planet through field research, diary studies, and contextual interviews — identifying the unmet "during-trip" phase and informing a new product direction.</p>
+        <div class="pcard-tags"><span class="pcard-tag">Field Research</span><span class="pcard-tag">Diary Studies</span><span class="pcard-tag">Gen Z</span><span class="pcard-tag">Lonely Planet</span></div>
+        <a href="th-cs-new.html" class="pcard-link">View Case Study →</a>
+      </div>
+    </li>
+
+    <li class="pcard pc-c">
+      <div class="pcard-img"><img src="omw-final-product.jpg" alt="On My Way — board game and components"/></div>
+      <div class="pcard-body">
+        <div class="pcard-meta"><span>5 Months · Design Happens</span><span class="pcard-type">Graduation Internship</span></div>
+        <h2 class="pcard-title">On My Way — Board Game</h2>
+        <p class="pcard-desc">Using multi-stakeholder research to design a family money management board game — from user interviews with families, kids, teachers, and psychologists to an award-winning playable prototype.</p>
+        <div class="pcard-tags"><span class="pcard-tag">Multi-stakeholder Research</span><span class="pcard-tag">Playtesting</span><span class="pcard-tag">Game Design</span><span class="pcard-tag">🏆 Award</span></div>
+        <a href="onmyway-cs.html" class="pcard-link">View Case Study →</a>
+      </div>
+    </li>
+
+  </ul>
+</div>
+
+<div class="section-full" id="about">
+  <div class="section-full-inner">
+    <div class="sec-label">
+      <span class="sec-name">About</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="about-top">
+      <div class="photo-wrap">
+        <div class="photo">
+          <img src="renu-photo.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block;position:absolute;top:0;left:0;" alt="Renu Nilangekar"/>
+        </div>
+        <div class="about-badge">✦ Open to Work</div>
+      </div>
+      <div>
+        <h2 class="about-h">I'm Renu — I ask<br/><em>"why?" a lot.</em></h2>
+        <p class="about-p">I love the detective work of research: talking to people, finding patterns in messy data, and uncovering insights that help teams make better decisions.</p>
+        <p class="about-p">My approach is simple: understand the problem before solving it. I've done research across travel, fintech, supply chain, and warehouse management — each project teaching me something new about how people think and what they actually need.</p>
+        <p class="about-p">I studied interaction design in Barcelona (M.A. from Harbour Space University) and graphic design in Pune (B.Des from Symbiosis Institute of Design). Somewhere along the way, I fell in love with asking questions and finding answers.</p>
+        <p class="about-p">When I'm not interviewing users or mapping journeys, I'm probably learning German (B1 in progress), exploring new cities, or convinced I've just asked the perfect research question.</p>
+        <p class="about-p" style="margin-top:1.4rem;font-size:.78rem;font-family:'Space Mono',monospace;letter-spacing:.08em;color:var(--ink3);">Based in India · Open to relocation · Seeking UX Research roles</p>
+      </div>
+    </div>
+    <div class="skills-row">
+      <div class="sg">
+        <span class="sg-lbl">Research Methods</span>
+        <div class="sg-pills">
+          <span class="pill">In-depth Interviews</span><span class="pill">Surveys</span><span class="pill">Usability Testing</span><span class="pill">Affinity Mapping</span><span class="pill">Journey Mapping</span><span class="pill">Heuristic Evaluation</span><span class="pill">Competitive Analysis</span>
+        </div>
+      </div>
+      <div class="sg">
+        <span class="sg-lbl">Design & Strategy</span>
+        <div class="sg-pills">
+          <span class="pill">Information Architecture</span><span class="pill">Interaction Design</span><span class="pill">Wireframing</span><span class="pill">Service Design Thinking</span><span class="pill">Stakeholder Management</span>
+        </div>
+      </div>
+      <div class="sg">
+        <span class="sg-lbl">Tools</span>
+        <div class="sg-pills">
+          <span class="pill">Figma</span><span class="pill">Miro</span><span class="pill">Notion</span><span class="pill">Adobe Illustrator</span><span class="pill">Jira</span><span class="pill">HTML / CSS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-full contact-bg" id="contact">
+  <div class="contact-grid">
+    <div>
+      <h2 class="contact-h">Open to work.<br/><em>Let's talk.</em></h2>
+    </div>
+    <div>
+      <p class="contact-p">Available for full-time UX Research roles, freelance projects, and collaborations. Based in India — open to relocation and remote work.</p>
+      <a href="/cdn-cgi/l/email-protection#661403081326030b070f0a4805090b" class="contact-cta">Get in touch →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="f-copy">© 2025 Renu Nilangekar — UX Researcher</span>
+  <ul class="f-links">
+    <li><a href="#">Top ↑</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+</footer>
+
+<div class="lb-overlay" id="lb" onclick="this.classList.remove('open')">
+  <button class="lb-close" onclick="document.getElementById('lb').classList.remove('open')">✕</button>
+  <img id="lb-img" src="" alt=""/>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+document.querySelectorAll('.pcard-img img').forEach(function(img){
+  img.style.cursor='zoom-in';
+  img.addEventListener('click',function(){
+    document.getElementById('lb-img').src=this.src;
+    document.getElementById('lb').classList.add('open');
+  });
+});
+document.addE

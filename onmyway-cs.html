@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="color-scheme" content="light"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>On My Way — Renu Nilangekar</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+ --ink:#131318; --ink2:#5C5C72; --ink3:#9A9AB0;
+ --border:#E4E4EF; --bg:#F7F7FA; --white:#FFFFFF;
+ --note-a:#FEF9C3; --note-b:#DBEAFE; --note-c:#FCE7F3;
+ --note-d:#D1FAE5; --note-e:#FFE4E6; --note-f:#EDE9FE;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#fff!important;forced-color-adjust:none;color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(255,255,255,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none}
+.nav-r{display:flex;align-items:center;gap:1.8rem;list-style:none}
+.nav-r a{font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);text-decoration:none}
+.nav-r a:hover{color:var(--ink)}
+.nav-r .btn{background:var(--ink);color:#fff!important;padding:.42rem 1.1rem;border-radius:100px}
+
+/* HEADER */
+.cs-header{max-width:1200px;margin:0 auto;padding:7rem 3rem 0}
+.cs-back{display:inline-flex;align-items:center;gap:.5rem;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);text-decoration:none;margin-bottom:2.2rem;transition:color .2s}
+.cs-back:hover{color:var(--ink)}
+.cs-title{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(3rem,7vw,5.5rem);line-height:.9;letter-spacing:-.03em;color:var(--ink);margin-bottom:.7rem}
+.cs-sub{font-size:.97rem;color:var(--ink2);margin-bottom:.8rem}
+.award-badge{display:inline-flex;align-items:center;gap:.6rem;background:var(--bg);border:1px solid var(--border);border-radius:100px;padding:.38rem 1rem;margin-bottom:2rem;font-size:.75rem;font-weight:500;color:var(--ink)}
+.award-badge span{font-size:.85rem}
+
+/* META ROW */
+.meta-row{display:flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff;flex-wrap:wrap}
+.mc{flex:1;min-width:140px;padding:1rem 1.4rem;border-right:1px solid var(--border)}
+.mc:last-child{border-right:none}
+.mc-l{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.28rem}
+.mc-v{font-size:.83rem;font-weight:500;color:var(--ink);line-height:1.4}
+
+.hd{height:1px;background:var(--border);margin:2.5rem 3rem 0}
+
+/* BODY LAYOUT */
+.cs-body{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:200px 1fr;padding:0 3rem 5rem}
+
+/* SIDEBAR */
+.sidebar{position:sticky;top:5rem;height:fit-content;padding:3rem 2rem 3rem 0;border-right:1px solid var(--border)}
+.sb-lbl{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:1rem}
+.toc{list-style:none}
+.toc a{display:flex;align-items:center;gap:.55rem;padding:.48rem 0 .48rem .85rem;text-decoration:none;font-size:.78rem;color:var(--ink3);border-left:2px solid transparent;transition:color .2s,border-color .2s;line-height:1.4}
+.toc a:hover{color:var(--ink);border-color:var(--ink3)}
+.toc a.on{color:var(--ink);border-color:var(--ink);font-weight:500}
+.tn{font-family:'Space Mono',monospace;font-size:.56rem;min-width:1.5rem;flex-shrink:0}
+
+/* CONTENT */
+.content{padding:3rem 0 0 3.5rem}
+.cs-sec{margin-bottom:5rem;scroll-margin-top:5.5rem}
+.sh{display:flex;align-items:center;gap:.9rem;margin-bottom:2rem}
+.sh-n{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;color:var(--ink3)}
+.sh-t{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);font-weight:500}
+.sh-r{flex:1;height:1px;background:var(--border)}
+
+h2.sh2{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(1.9rem,3.2vw,2.6rem);letter-spacing:-.022em;line-height:1.1;color:var(--ink);margin-bottom:1.3rem}
+h2.sh2 em{font-style:italic}
+.bp{font-size:.93rem;color:var(--ink2);line-height:1.88;margin-bottom:1rem;max-width:680px}
+
+/* IMAGE PLACEHOLDER */
+.imgp{width:100%;border-radius:10px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+.imgp span{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.88rem;color:var(--ink3);padding:1.5rem;text-align:center}
+
+/* QUOTE CARD */
+.qcard{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.7rem 2rem;margin:1.5rem 0;position:relative;overflow:hidden}
+.qcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--ink)}
+.ql{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.75rem}
+.qq{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;line-height:1.6;color:var(--ink);margin-bottom:.6rem}
+.qc{font-size:.76rem;color:var(--ink3)}
+
+/* RESEARCH Q BOX */
+.rqbox{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1.5rem 1.8rem;margin-top:1.2rem;border-left:2px solid var(--ink)}
+.rql{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.5rem}
+.rqt{font-size:.95rem;font-weight:500;color:var(--ink);line-height:1.6}
+
+/* WHY BOX */
+.why{background:var(--bg);border-radius:10px;padding:1.3rem 1.5rem;margin-bottom:1.5rem;border-left:2px solid var(--ink)}
+.wyl{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.4rem}
+.wyt{font-size:.9rem;color:var(--ink2);line-height:1.7}
+
+/* GRIDS */
+.rg{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0}
+.rg2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+.rg4{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+.rgc{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.3rem}
+.rgl{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.45rem}
+.rgv{font-size:.88rem;font-weight:500;color:var(--ink);line-height:1.45}
+
+/* STAT CARDS */
+.stat-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1.8rem;text-align:center}
+.stat-n{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:3rem;line-height:1;color:var(--ink);display:block;margin-bottom:.3rem}
+.stat-l{font-size:.82rem;color:var(--ink2);line-height:1.5}
+
+/* STICKY NOTES */
+.notes{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+.note{border-radius:8px;padding:1.6rem 1.7rem;transition:transform .2s,box-shadow .2s}
+.note:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.1)}
+.note-a{background:var(--note-a)} .note-b{background:var(--note-b)}
+.note-c{background:var(--note-c)} .note-d{background:var(--note-d)}
+.note-e{background:var(--note-e)} .note-f{background:var(--note-f)}
+.nn{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;color:rgba(19,19,24,.4);display:block;margin-bottom:.6rem}
+.nt{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.1rem;color:var(--ink);margin-bottom:.5rem}
+.nq{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.92rem;color:var(--ink2);margin-bottom:.8rem;line-height:1.5}
+.np{list-style:none}
+.np li{font-size:.82rem;color:var(--ink2);display:flex;gap:.5rem;line-height:1.5;margin-bottom:.25rem}
+.np li::before{content:'·';color:var(--ink3);flex-shrink:0}
+
+/* REFRAME ARROW */
+.reframe{background:var(--bg);border-radius:10px;padding:2rem;margin:1.5rem 0}
+.reframe-from{font-size:.9rem;color:var(--ink2);line-height:1.6;margin-bottom:1rem;font-style:italic}
+.reframe-arrow{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--ink3);margin-bottom:1rem;display:block}
+.reframe-to{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ink);line-height:1.4;font-style:italic}
+
+/* CONSTRAINTS LIST */
+.constraints{list-style:none;margin:1rem 0}
+.constraints li{display:flex;align-items:flex-start;gap:.8rem;font-size:.9rem;color:var(--ink2);margin-bottom:.45rem;line-height:1.55}
+.ck{width:16px;height:16px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.5rem;color:#fff;font-weight:700;margin-top:.18rem}
+
+/* ITERATION TIMELINE */
+.iter-list{display:flex;flex-direction:column;gap:0;margin:1.5rem 0}
+.iter{display:grid;grid-template-columns:80px 1fr;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--border);align-items:start}
+.iter:last-child{border-bottom:none}
+.iter-num{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:2rem;color:var(--ink3);line-height:1;text-align:right}
+.iter-h{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.1rem;color:var(--ink);margin-bottom:.4rem}
+.iter-p{font-size:.88rem;color:var(--ink2);line-height:1.7;margin-bottom:.4rem}
+.iter-result{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-top:.4rem}
+
+/* GAME COMPONENTS */
+.comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin:1.2rem 0}
+.comp-item{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem}
+.comp-icon{font-size:1.2rem;display:block;margin-bottom:.4rem}
+.comp-name{font-size:.82rem;font-weight:500;color:var(--ink);margin-bottom:.15rem}
+.comp-desc{font-size:.74rem;color:var(--ink3);line-height:1.4}
+
+/* IMPACT GRID */
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.ic{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.4rem 1.6rem}
+.ict{display:inline-block;font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;background:var(--bg);border:1px solid var(--border);border-radius:100px;padding:.14rem .58rem;color:var(--ink3);margin-bottom:.6rem}
+.icf{font-size:.82rem;color:var(--ink2);margin-bottom:.3rem;line-height:1.5}
+.ica{font-size:.7rem;color:var(--ink3);display:flex;align-items:center;gap:.25rem;margin-bottom:.25rem}
+.ica::before{content:'↓';font-size:.75rem;color:var(--ink3)}
+.icto{font-size:.9rem;font-weight:600;color:var(--ink);line-height:1.4}
+
+/* LEARNINGS */
+.lg{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+.lt{font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
+.li-wrap{display:flex;flex-direction:column;gap:.5rem;margin-bottom:2rem}
+.li{display:flex;align-items:flex-start;gap:.7rem;font-size:.87rem;color:var(--ink2);line-height:1.6}
+.ld{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:.55rem}
+.ld.g{background:#16A34A} .ld.r{background:#DC2626}
+.tl{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1.5rem}
+.tll{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.7rem}
+.tlu{list-style:none}
+.tlu li{font-size:.84rem;color:var(--ink2);display:flex;gap:.5rem;line-height:1.5;margin-bottom:.32rem}
+.tlu li::before{content:'·';color:var(--ink3);flex-shrink:0}
+.dg{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1.5rem}
+.di{display:flex;align-items:center;gap:.7rem;background:#fff;border:1px solid var(--border);border-radius:8px;padding:.68rem 1rem;font-size:.82rem;color:var(--ink2)}
+.dd{width:14px;height:14px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.45rem;color:#fff;font-weight:700}
+
+/* OUTCOME */
+.ob{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:4rem}
+.obl{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:1.2rem}
+.obh{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(1.8rem,3vw,2.5rem);line-height:1.1;letter-spacing:-.022em;color:var(--ink);margin-bottom:1.3rem}
+.obh em{font-style:italic}
+.obp{font-size:.92rem;color:var(--ink2);line-height:1.85;margin-bottom:.8rem;max-width:580px}
+.obt{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:var(--ink3);margin-top:2rem;display:block}
+
+/* AWARD BOX */
+.award-box{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.5rem 1.8rem;display:flex;align-items:center;gap:1.2rem;margin:1.5rem 0}
+.award-icon{font-size:2rem;flex-shrink:0}
+.award-lbl{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.3rem}
+.award-name{font-size:.95rem;font-weight:600;color:var(--ink);line-height:1.4}
+
+/* PREV / NEXT */
+.pn{margin-top:4rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.pnc{display:flex;flex-direction:column;gap:.4rem;border-radius:12px;padding:1.8rem 2.2rem;text-decoration:none;color:var(--ink);transition:box-shadow .28s,transform .22s;position:relative;overflow:hidden}
+.pnc:hover{box-shadow:0 14px 40px rgba(0,0,0,.12);transform:translateY(-3px)}
+.pnc.prev{background:radial-gradient(ellipse 120% 140% at -10% 120%, rgba(254,215,170,.7) 0%, transparent 55%), radial-gradient(ellipse 80% 100% at 110% -10%, rgba(251,207,232,.65) 0%, transparent 55%), radial-gradient(ellipse 60% 80% at 50% 110%, rgba(221,214,254,.5) 0%, transparent 55%), #F7F7FA}
+.pnc.next{align-items:flex-end;text-align:right;background:radial-gradient(ellipse 120% 140% at 110% 120%, rgba(221,214,254,.7) 0%, transparent 55%), radial-gradient(ellipse 80% 100% at -10% -10%, rgba(253,186,116,.5) 0%, transparent 55%), radial-gradient(ellipse 60% 80% at 50% 110%, rgba(251,207,232,.5) 0%, transparent 55%), #F7F7FA}
+.pnd{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2)}
+.pnt{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.3rem;letter-spacing:-.015em;color:var(--ink);line-height:1.15}
+.png{font-size:.72rem;color:var(--ink3)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+ nav{padding:1rem 1.5rem}
+ .cs-header{padding:6rem 1.5rem 0}
+ .hd{margin:2rem 1.5rem 0}
+ .cs-body{grid-template-columns:1fr;padding:0 1.5rem 4rem}
+ .sidebar{display:none}
+ .content{padding:2.5rem 0 0}
+ .meta-row .mc{flex:0 0 50%}
+ .notes,.ig,.lg,.dg,.tl,.rg2,.rg4{grid-template-columns:1fr}
+ .rg{grid-template-columns:1fr 1fr}
+ .comp-grid{grid-template-columns:1fr 1fr}
+ .pn{grid-template-columns:1fr}
+ .ob{padding:2.5rem 1.8rem}
+ .iter{grid-template-columns:50px 1fr}
+}
+@media(max-width:600px){
+ .rg,.comp-grid{grid-template-columns:1fr}
+ .meta-row .mc{flex:0 0 100%}
+}
+</style>
+</head>
+<body>
+
+<nav>
+ <a class="logo" href="renu-clean.html">Renu Nilangekar</a>
+ <ul class="nav-r">
+ <li><a href="renu-clean.html#work">Work</a></li>
+ <li><a href="renu-clean.html#about">About</a></li>
+ <li><a href="#" class="btn">Resume</a></li>
+ </ul>
+</nav>
+
+<div class="cs-header">
+ <a href="renu-clean.html#work" class="cs-back">← Back to Work</a>
+ <h1 class="cs-title">On My Way</h1>
+ <p class="cs-sub">Using Research to Design a Family Money Management Game</p>
+ <div class="award-badge"><span>🏆</span> Best Research Based Report — Symbiosis Design Showcase 2018</div>
+
+ <div class="meta-row">
+ <div class="mc"><span class="mc-l">Duration</span><span class="mc-v">5 Months</span></div>
+ <div class="mc"><span class="mc-l">Tools</span><span class="mc-v">Adobe Illustrator, Google Docs</span></div>
+ <div class="mc"><span class="mc-l">Team</span><span class="mc-v">Individual</span></div>
+ <div class="mc"><span class="mc-l">Mentor</span><span class="mc-v">Marion Jhunja · Shreya Shah</span></div>
+ <div class="mc"><span class="mc-l">Internship</span><span class="mc-v">Design Happens, Pune</span></div>
+ <div class="mc"><span class="mc-l">Role</span><span class="mc-v">UX Researcher & Designer</span></div>
+ </div>
+</div>
+<div class="hd"></div>
+
+<div class="cs-body">
+ <aside class="sidebar">
+ <span class="sb-lbl">Contents</span>
+ <ul class="toc">
+ <li><a href="#challenge" class="on"><span class="tn">01 /</span>Challenge</a></li>
+ <li><a href="#approach"><span class="tn">02 /</span>Approach</a></li>
+ <li><a href="#insights"><span class="tn">03 /</span>Insights</a></li>
+ <li><a href="#reframe"><span class="tn">04 /</span>Reframing</a></li>
+ <li><a href="#iteration"><span class="tn">05 /</span>Iteration</a></li>
+ <li><a href="#solution"><span class="tn">06 /</span>Solution</a></li>
+ <li><a href="#impact"><span class="tn">07 /</span>Impact</a></li>
+ <li><a href="#outcome"><span class="tn">08 /</span>Outcome</a></li>
+ </ul>
+ </aside>
+
+ <main class="content">
+
+ <!-- 01 CHALLENGE -->
+ <section class="cs-sec" id="challenge">
+ <div class="sh"><span class="sh-n">01</span><span class="sh-t">The Research Challenge</span><div class="sh-r"></div></div>
+ <h2 class="sh2">Starting with a brief,<br/><em>guided by research.</em></h2>
+ <p class="bp">Design Brief: Create a product or tool that can help make life easier or enhance everyday products using design.</p>
+ <p class="bp">Initial Direction: Subscription box for families.</p>
+
+ <img src="omw-competitive-analysis.png" style="width:100%;border-radius:10px;margin:1.5rem 0;display:block;" alt="Competitive analysis of subscription box landscape"/>
+
+ <div class="why">
+ <span class="wyl">The Opportunity</span>
+ <p class="wyt">Through market research, I identified a growing subscription box industry in India — 200% annual growth, with the highest number of subscription startups in the world. But competitive analysis of 5 major players revealed a critical gap.</p>
+ </div>
+
+ <div class="rg2">
+ <div class="rgc"><span class="rgl">Platforms Analysed</span><div class="rgv">Awesome Pack, Unboxboardom, Game Box, Box of Challenge, Escape the Crate</div></div>
+ <div class="rgc"><span class="rgl">Gap Identified</span><div class="rgv">None addressed practical life skills education through play</div></div>
+ </div>
+
+ <div class="rqbox">
+ <span class="rql">Research Question</span>
+ <p class="rqt">What do families actually need from a monthly subscription box, and how can design address those needs?</p>
+ </div>
+ </section>
+
+ <!-- 02 APPROACH -->
+ <section class="cs-sec" id="approach">
+ <div class="sh"><span class="sh-n">02</span><span class="sh-t">Research Approach</span><div class="sh-r"></div></div>
+ <h2 class="sh2">Generative <em>User Research</em></h2>
+ <p class="bp">To understand family needs, I conducted multi-stakeholder research across four different perspectives — ensuring a comprehensive view of the problem space.</p>
+
+
+
+ <!-- 4 stakeholder sticky notes -->
+ <div class="notes">
+ <div class="note note-a">
+ <span class="nn">Stakeholder 01</span>
+ <div class="nt">Families</div>
+ <ul class="np">
+ <li>Surveys & in-depth interviews</li>
+ <li>Understanding time constraints and priorities</li>
+ <li>What activities they do together</li>
+ </ul>
+ </div>
+ <div class="note note-b">
+ <span class="nn">Stakeholder 02</span>
+ <div class="nt">Kids</div>
+ <ul class="np">
+ <li>Interviews & observational research</li>
+ <li>How they spend time, what engages them</li>
+ <li>Social dynamics post age 8</li>
+ </ul>
+ </div>
+ <div class="note note-c">
+ <span class="nn">Stakeholder 03</span>
+ <div class="nt">Teachers</div>
+ <ul class="np">
+ <li>Professional insights on learning gaps</li>
+ <li>Life skills missing from curriculum</li>
+ <li>What engages children effectively</li>
+ </ul>
+ </div>
+ <div class="note note-d">
+ <span class="nn">Stakeholder 04</span>
+ <div class="nt">Child Psychologists</div>
+ <ul class="np">
+ <li>Expert perspectives on child development</li>
+ <li>Age-appropriate skill building</li>
+ <li>Family bonding dynamics</li>
+ </ul>
+ </div>
+ </div>
+
+ <div class="rg">
+ <div class="rgc"><span class="rgl">Methods</span><div class="rgv">Questionnaires, Surveys, Interviews, Observations, Expert consultations</div></div>
+ <div class="rgc"><span class="rgl">Target Demographic</span><div class="rgv">Families with children above age 8</div></div>
+ <div class="rgc"><span class="rgl">Sample</span><div class="rgv">Families, kids, teachers and child psychologists in Pune</div></div>
+ </div>
+
+ <img src="omw-interview-questionnaire.png" style="width:100%;border-radius:10px;margin:1.5rem 0 .75rem;display:block;" alt="User interview questionnaire"/>
+ <img src="omw-research-collage.png" style="width:100%;border-radius:10px;margin:0 0 1.5rem;display:block;" alt="Understanding child development and family connection — secondary research synthesis"/>
+ </section>
+
+ <!-- 03 INSIGHTS -->
+ <section class="cs-sec" id="insights">
+ <div class="sh"><span class="sh-n">03</span><span class="sh-t">Key Research Insights</span><div class="sh-r"></div></div>
+ <h2 class="sh2">What the research <em>revealed</em></h2>
+
+ <!-- Stat highlights -->
+ <div class="rg2" style="margin-bottom:1.5rem">
+ <div class="stat-card">
+ <span class="stat-n">0.5–1hr</span>
+ <div class="stat-l">Together per day on average across the week</div>
+ </div>
+ <div class="stat-card">
+ <span class="stat-n">&lt;8hrs</span>
+ <div class="stat-l">Total family time per week including weekends</div>
+ </div>
+ </div>
+
+ <!-- Insight sticky notes -->
+ <div class="notes">
+ <div class="note note-a">
+ <span class="nn">Insight 01</span>
+ <div class="nt">Family Time Crisis</div>
+ <p class="nq">Families hardly get to spend time together on a daily basis.</p>
+ <ul class="np">
+ <li>Kids join multiple classes that keep them occupied throughout the day</li>
+ <li>Less than 8 hours together in total each week</li>
+ <li>Only 2 hours on weekends given over to family time</li>
+ </ul>
+ </div>
+ <div class="note note-b">
+ <span class="nn">Insight 02</span>
+ <div class="nt">Together ≠ Communication</div>
+ <p class="nq">Most common activity: watching TV — which doesn't involve communication.</p>
+ <ul class="np">
+ <li>Passive consumption dominates shared time</li>
+ <li>Weekends are the only real opportunity to unwind together</li>
+ <li>Most activities don't involve meaningful interaction</li>
+ </ul>
+ </div>
+ <div class="note note-c">
+ <span class="nn">Insight 03</span>
+ <div class="nt">Shifting Social Priorities</div>
+ <p class="nq">After age 8: Friends &gt; Family in social importance.</p>
+ <ul class="np">
+ <li>After the age of 8, kids give more time and importance to friends</li>
+ <li>Makes family bonding even more critical during available time</li>
+ <li>Engagement strategy must compete with peer activities</li>
+ </ul>
+ </div>
+ <div class="note note-d">
+ <span class="nn">Insight 04</span>
+ <div class="nt">Unmet Educational Need</div>
+ <p class="nq">"We would appreciate it even more if you could help them teach practical life skills in a fun way." — Parent feedback</p>
+ <ul class="np">
+ <li>Respondents liked the concept but wanted more depth</li>
+ <li>Life skills gap identified: money management, planning, negotiation</li>
+ <li>Families learn more about each other during trips and activities</li>
+ </ul>
+ </div>
+ <div class="note note-e">
+ <span class="nn">Insight 05</span>
+ <div class="nt">Financial Literacy Gap</div>
+ <p class="nq">Huge gap in teaching money management skills to kids in India and abroad.</p>
+ <ul class="np">
+ <li>Average monthly allowance (ages 7–14): Rs 500–1000</li>
+ <li>45% of children ages 0–6 already receive pocket money</li>
+ <li>Teaching financial literacy early builds self-worth and planning skills</li>
+ </ul>
+ </div>
+ <div class="note note-f">
+ <span class="nn">Insight 06</span>
+ <div class="nt">Trips as Bonding Catalyst</div>
+ <p class="nq">Families learn a lot of new things about each other during trips and everyone becomes more cordial.</p>
+ <ul class="np">
+ <li>Travel context naturally combines budgeting, planning and saving</li>
+ <li>Fun and aspirational — ideal theme to engage kids</li>
+ <li>Time-sensitive nature builds engagement and urgency</li>
+ </ul>
+ </div>
+ </div>
+ </section>
+
+ <!-- 04 REFRAMING -->
+ <section class="cs-sec" id="reframe">
+ <div class="sh"><span class="sh-n">04</span><span class="sh-t">Problem Reframing</span><div class="sh-r"></div></div>
+ <h2 class="sh2">From brief to <em>research-backed problem.</em></h2>
+
+ <div class="reframe">
+ <div class="reframe-from">Initial Brief: "Design a subscription box for families"</div>
+ <span class="reframe-arrow">↓ Research-Informed Reframe</span>
+ <div class="reframe-to">"In today's busy world, families struggle to find quality time together. A subscription box should help families bond AND teach practical life skills in an engaging way."</div>
+ </div>
+
+ <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ink);margin:1.8rem 0 .9rem">Research-Driven Constraints</h3>
+ <ul class="constraints">
+ <li><div class="ck">✓</div>Must facilitate communication — not passive consumption like TV</li>
+ <li><div class="ck">✓</div>Must teach practical life skills (money management, planning, negotiation)</li>
+ <li><div class="ck">✓</div>Must be engaging for kids age 8 and above</li>
+ <li><div class="ck">✓</div>Must create shared memories and meaningful interaction</li>
+ <li><div class="ck">✓</div>Must work within the limited 2-hour family window</li>
+ </ul>
+
+ <img src="omw-theme-process.png" style="width:100%;border-radius:10px;margin:1.5rem 0;display:block;" alt="Theme selection process — 4 steps"/>
+ </section>
+
+ <!-- 05 ITERATION -->
+ <section class="cs-sec" id="iteration">
+ <div class="sh"><span class="sh-n">05</span><span class="sh-t">Iterative Research Process</span><div class="sh-r"></div></div>
+ <h2 class="sh2">Research-informed <em>iteration</em></h2>
+
+ <div class="iter-list">
+ <div class="iter">
+ <div class="iter-num">01</div>
+ <div>
+ <div class="iter-h">Initial Themes</div>
+ <p class="iter-p">Shortlisted themes based on user research feedback — what life skills do parents want to teach? Listed existing games in the market and modified them according to the audience.</p>
+ <div class="iter-result">Result: Too generic, needed more clarity</div>
+ </div>
+ </div>
+ <div class="iter">
+ <div class="iter-num">02</div>
+ <div>
+ <div class="iter-h">Clarity on Themes</div>
+ <p class="iter-p">Made a document explaining which half of themes were practical life lessons and which half were fun activity-based. Realized both elements needed to be combined, not separated.</p>
+ <div class="iter-result">Result: Better direction, but still too serious</div>
+ </div>
+ </div>
+ <div class="iter">
+ <div class="iter-num">03</div>
+ <div>
+ <div class="iter-h">Combining Elements</div>
+ <p class="iter-p">Decided to combine life skills AND activities — that's how the final themes were fixed. Each theme validated through playtesting with real families. Final themes: Trip Planning, Cooking, Gardening.</p>
+ <div class="iter-result">Result: Research-validated theme structure ✓</div>
+ </div>
+ </div>
+ </div>
+
+ <div class="rg">
+ <div class="rgc"><span class="rgl">Trip Planning Theme</span><div class="rgv">Budgeting, money management, planning</div></div>
+ <div class="rgc"><span class="rgl">Cooking Theme</span><div class="rgv">Teamwork, cleanliness, appreciation, table etiquettes</div></div>
+ <div class="rgc"><span class="rgl">Gardening Theme</span><div class="rgv">Patience, observation, responsibility</div></div>
+ </div>
+
+ <img src="omw-prototyping-session.jpg" style="width:100%;border-radius:10px;margin:1.5rem 0 .75rem;display:block;" alt="Early paper prototype testing sessions"/>
+      <img src="omw-playtesting.jpg" style="width:100%;border-radius:10px;margin:0 0 1.5rem;display:block;" alt="Family playtesting sessions"/>
+ </section>
+
+ <!-- 06 SOLUTION -->
+ <section class="cs-sec" id="solution">
+ <div class="sh"><span class="sh-n">06</span><span class="sh-t">Research-Informed Solution</span><div class="sh-r"></div></div>
+ <h2 class="sh2">On My Way — <em>the game</em></h2>
+ <p class="bp">A money management board game that helps parents teach their kids life skills like negotiation, planning, and saving money.</p>
+
+ <img src="omw-game-board.jpg" style="width:100%;border-radius:10px;margin:1.5rem 0;display:block;" alt="Final game board showing 4 landscape circles"/>
+
+ <div class="why" style="margin-top:1.5rem">
+ <span class="wyl">How It Works</span>
+ <p class="wyt">Players travel through 4 different landscapes — Cityscape, Beach Scape, Forest Scape, and Mountain Scape. Each player receives a budget and must complete tasks by purchasing the tools needed for each landscape. Goal: complete tasks within budget and save the most money.</p>
+ </div>
+
+ <!-- Research → Design mapping -->
+ <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ink);margin:1.8rem 0 1rem">Insights Addressed by Design</h3>
+ <div class="ig">
+ <div class="ic"><span class="ict">Insight — Limited Time</span><p class="icf">Families have less than 2 hours together</p><p class="ica">Design Decision</p><p class="icto">2-hour gameplay window</p></div>
+ <div class="ic"><span class="ict">Insight — No Communication</span><p class="icf">Most activities are passive (TV)</p><p class="ica">Design Decision</p><p class="icto">Negotiation, trading, discussion required to play</p></div>
+ <div class="ic"><span class="ict">Insight — Age 8+</span><p class="icf">Kids give more importance to peers after 8</p><p class="ica">Design Decision</p><p class="icto">Complex enough to engage older kids</p></div>
+ <div class="ic"><span class="ict">Insight — Life Skills Gap</span><p class="icf">Parents want practical skills through play</p><p class="ica">Design Decision</p><p class="icto">Teaches budgeting, planning and saving through gameplay</p></div>
+ </div>
+
+ <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ink);margin:1.8rem 0 1rem">Game Components</h3>
+ <div class="comp-grid">
+ <div class="comp-item"><span class="comp-icon">🎲</span><div class="comp-name">Circular Board</div><div class="comp-desc">4 concentric circles, one per landscape</div></div>
+ <div class="comp-item"><span class="comp-icon">🃏</span><div class="comp-name">Task Cards</div><div class="comp-desc">Landscape-specific challenges to complete</div></div>
+ <div class="comp-item"><span class="comp-icon">🔧</span><div class="comp-name">Tool Cards</div><div class="comp-desc">Items needed to complete each task</div></div>
+ <div class="comp-item"><span class="comp-icon">💰</span><div class="comp-name">Game Money</div><div class="comp-desc">Core budgeting mechanic</div></div>
+ <div class="comp-item"><span class="comp-icon">🎭</span><div class="comp-name">Pawns & Tokens</div><div class="comp-desc">Player pieces for movement</div></div>
+ <div class="comp-item"><span class="comp-icon">📦</span><div class="comp-name">Packaging</div><div class="comp-desc">Designed for subscription box delivery</div></div>
+ </div>
+
+ <div class="rg2" style="margin-top:1.5rem">
+ <img src="omw-game-board.jpg" style="width:100%;border-radius:10px;display:block;" alt="Game cards and components"/>
+ <img src="omw-final-product.jpg" style="width:100%;border-radius:10px;display:block;" alt="Final packaged product with all components"/>
+ </div>
+ </section>
+
+ <!-- 07 IMPACT -->
+ <section class="cs-sec" id="impact">
+ <div class="sh"><span class="sh-n">07</span><span class="sh-t">Impact & Learnings</span><div class="sh-r"></div></div>
+ <h2 class="sh2">Outcomes & <em>Reflections</em></h2>
+
+ <div class="award-box">
+ <span class="award-icon">🏆</span>
+ <div>
+ <span class="award-lbl">Recognition</span>
+ <div class="award-name">Best Research Based Report · Symbiosis Design Showcase 2018</div>
+ </div>
+ </div>
+
+ <div class="lg">
+ <div>
+ <span class="lt">What Worked Well</span>
+ <div class="li-wrap">
+ <div class="li"><div class="ld g"></div>Multi-stakeholder approach — interviewing families, kids, teachers AND psychologists gave a comprehensive perspective</div>
+ <div class="li"><div class="ld g"></div>Iterative problem reframing — starting with "subscription box" but letting research guide to "practical life skills through play"</div>
+ <div class="li"><div class="ld g"></div>Prototyping with real families — testing actual gameplay revealed insights that surveys couldn't capture</div>
+ </div>
+ </div>
+ <div>
+ <span class="lt">What I'd Do Differently</span>
+ <div class="li-wrap">
+ <div class="li"><div class="ld r"></div>Larger sample size — research based on Pune families, would expand to multiple cities</div>
+ <div class="li"><div class="ld r"></div>Quantitative validation — would add metrics: learning outcomes, family satisfaction scores, time spent</div>
+ <div class="li"><div class="ld r"></div>Longitudinal study — would test if families continue using it after the first play session</div>
+ </div>
+ </div>
+ </div>
+
+ <div class="tl">
+ <div>
+ <span class="tll">Skills Developed</span>
+ <ul class="tlu">
+ <li>Multi-stakeholder research</li>
+ <li>Survey design</li>
+ <li>Observational research</li>
+ <li>Iterative prototyping</li>
+ <li>Research synthesis</li>
+ <li>Game mechanics understanding</li>
+ </ul>
+ </div>
+ <div>
+ <span class="tll">Methods Used</span>
+ <ul class="tlu">
+ <li>Interviews</li>
+ <li>Surveys & questionnaires</li>
+ <li>Competitive analysis</li>
+ <li>Observational research</li>
+ <li>Expert consultation</li>
+ <li>Playtesting & validation</li>
+ </ul>
+ </div>
+ </div>
+
+ <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ink);margin:2rem 0 1rem">Project Deliverables</h3>
+ <div class="dg">
+ <div class="di"><div class="dd">✓</div>Multi-stakeholder research report</div>
+ <div class="di"><div class="dd">✓</div>Competitive analysis (5 platforms)</div>
+ <div class="di"><div class="dd">✓</div>Problem statement derived from research</div>
+ <div class="di"><div class="dd">✓</div>Iterative prototyping with user testing</div>
+ <div class="di"><div class="dd">✓</div>Complete game design & mechanics</div>
+ <div class="di"><div class="dd">✓</div>Packaging and product design</div>
+ <div class="di"><div class="dd">✓</div>Expansion strategy based on research</div>
+ <div class="di"><div class="dd">✓</div>Research-backed theme validation</div>
+ </div>
+
+ 
+ </section>
+
+ <!-- 08 OUTCOME -->
+ <section class="cs-sec" id="outcome">
+ <div class="sh"><span class="sh-n">08</span><span class="sh-t">Outcome</span><div class="sh-r"></div></div>
+ <div class="ob">
+ <span class="obl">Final Thoughts</span>
+ <h2 class="obh">Research that turned a vague brief into an <em>award-winning solution.</em></h2>
+ <p class="obp">Starting with "design a subscription box", research revealed what families actually needed — quality time, communication, and practical life skills through play.</p>
+ <p class="obp">On My Way addresses real, research-validated pain points and won Best Research Based Report at Symbiosis Design Showcase 2018 for the rigour of its multi-stakeholder methodology.</p>
+ <span class="obt">Thank you for reading ✦</span>
+ </div>
+
+ <div class="pn">
+ <a href="wms-cs.html" class="pnc prev">
+ <span class="pnd">← Previous Project</span>
+ <span class="pnt">WMS Onboarding</span>
+ <span class="png">Graduation Internship · Design Happens</span>
+ </a>
+ <a href="travel-hacks-final.html" class="pnc next">
+ <span class="pnd">Next Project →</span>
+ <span class="pnt">Travel Hacks</span>
+ <span class="png">Academic · Harbour Space University</span>
+ </a>
+ </div>
+ </section>
+
+ </main>
+</div>
+
+<script>
+const secs=document.querySelectorAll('.cs-sec');
+const links=document.querySelectorAll('.toc a');
+const spy=new IntersectionObserver(entries=>{
+ entries.forEach(e=>{
+ if(e.isIntersecting){
+ links.forEach(l=>l.classList.remove('on'));
+ const a=document.querySelector(`.toc a[href="#${e.target.id}"]`);
+ if(a)a.classList.add('on');
+ }
+ });
+},{rootMargin:'-20% 0px -70% 0px'});
+secs.forEach(s=>spy.observe(s));
+</script>
+
+<style>
+.lb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;}
+.lb-overlay.open{display:flex;}
+.lb-overlay img{max-width:92vw;max-height:90vh;border-radius:8px;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+.lb-close{position:fixed;top:1.5rem;right:2rem;color:#fff;font-size:2rem;cursor:pointer;line-height:1;z-index:10000;background:none;border:none;opacity:.7;transition:opacity .2s;}
+.lb-close:hover{opacity:1;}
+.cs-zoomable{cursor:zoom-in;transition:opacity .2s;}
+.cs-zoomable:hover{opacity:.9;}
+</style>
+<div class="lb-overlay" id="lb" onclick="this.classList.remove('open')">
+  <button class="lb-close" onclick="document.getElementById('lb').classList.remove('open')">✕</button>
+  <img id="lb-img" src="" alt=""/>
+</div>
+<script>
+document.querySelectorAll('.content img, .cs-sec img').forEach(function(img){
+  img.classList.add('cs-zoomable');
+  img.addEventListener('click', function(){
+    document.getElementById('lb-img').src = this.src;
+    document.getElementById('lb-img').alt = this.alt;
+    document.getElementById('lb').classList.add('open');
+  });
+});
+document.addEventListener('keydown', function(e){
+  if(e.key==='Escape') document.getElementById('lb').classList.remove('open');
+});
+</script>
+</body>
+</html>

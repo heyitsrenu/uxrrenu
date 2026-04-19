@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="color-scheme" content="light"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>WMS Onboarding — Renu Nilangekar</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--ink:#131318;--ink2:#5C5C72;--ink3:#9A9AB0;--border:#E4E4EF;--bg:#F7F7FA;--white:#FFFFFF;
+--note-a:#FEF9C3;--note-b:#DBEAFE;--note-c:#FCE7F3;--note-d:#D1FAE5;--note-e:#FFE4E6;--note-f:#EDE9FE;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;color-scheme:light;}
+:root{color-scheme:light;}
+body{background:#fff!important;forced-color-adjust:none;color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;padding:1rem 4rem;background:rgba(255,255,255,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none;white-space:nowrap;flex-shrink:0;}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none;flex-shrink:0;}
+.nav-links a{font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);text-decoration:none;white-space:nowrap;}
+.nav-links a:hover{color:var(--ink);}
+.nav-links .resume{background:var(--ink);color:#fff!important;padding:.4rem 1rem;border-radius:100px;}
+
+/* HEADER */
+.cs-header{max-width:1200px;margin:0 auto;padding:7rem 3rem 0;}
+.cs-back{display:inline-flex;align-items:center;gap:.5rem;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);text-decoration:none;margin-bottom:2.2rem;transition:color .2s;}
+.cs-back:hover{color:var(--ink);}
+.cs-title{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(3rem,7vw,5.5rem);line-height:.9;letter-spacing:-.03em;color:var(--ink);margin-bottom:.7rem;}
+.cs-sub{font-size:.97rem;color:var(--ink2);margin-bottom:2.2rem;}
+
+/* META ROW */
+.meta-row{display:flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff;flex-wrap:wrap;}
+.mc{flex:1;min-width:140px;padding:1rem 1.4rem;border-right:1px solid var(--border);}
+.mc:last-child{border-right:none;}
+.mc-l{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.28rem;}
+.mc-v{font-size:.83rem;font-weight:500;color:var(--ink);line-height:1.4;}
+
+.hd{height:1px;background:var(--border);margin:2.5rem 3rem 0;}
+
+/* BODY */
+.cs-body{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:200px 1fr;padding:0 3rem 5rem;}
+
+/* SIDEBAR */
+.sidebar{position:sticky;top:5rem;height:fit-content;padding:3rem 2rem 3rem 0;border-right:1px solid var(--border);}
+.sb-lbl{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:1rem;}
+.toc{list-style:none;}
+.toc a{display:flex;align-items:center;gap:.55rem;padding:.48rem 0 .48rem .85rem;text-decoration:none;font-size:.78rem;color:var(--ink3);border-left:2px solid transparent;transition:color .2s,border-color .2s;line-height:1.4;}
+.toc a:hover{color:var(--ink);border-color:var(--ink3);}
+.toc a.on{color:var(--ink);border-color:var(--ink);font-weight:500;}
+.tn{font-family:'Space Mono',monospace;font-size:.56rem;min-width:1.5rem;flex-shrink:0;}
+
+/* CONTENT */
+.content{padding:3rem 0 0 3.5rem;}
+.cs-sec{margin-bottom:5rem;scroll-margin-top:5.5rem;}
+.sh{display:flex;align-items:center;gap:.9rem;margin-bottom:2rem;}
+.sh-n{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;color:var(--ink3);}
+.sh-t{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);font-weight:500;}
+.sh-r{flex:1;height:1px;background:var(--border);}
+h2.sh2{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(1.9rem,3.2vw,2.6rem);letter-spacing:-.022em;line-height:1.1;color:var(--ink);margin-bottom:1.3rem;}
+h2.sh2 em{font-style:italic;}
+.bp{font-size:.93rem;color:var(--ink2);line-height:1.88;margin-bottom:1rem;max-width:680px;}
+
+/* SHARED COMPONENTS */
+.imgp{width:100%;border-radius:10px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;}
+.imgp span{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.88rem;color:var(--ink3);padding:1.5rem;text-align:center;}
+.qcard{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.7rem 2rem;margin:1.5rem 0;position:relative;overflow:hidden;}
+.qcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--ink);}
+.ql{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.75rem;}
+.qq{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;line-height:1.6;color:var(--ink);margin-bottom:.6rem;}
+.qc{font-size:.76rem;color:var(--ink3);}
+.rqbox{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1.5rem 1.8rem;margin-top:1.2rem;border-left:2px solid var(--ink);}
+.rql{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.5rem;}
+.rqt{font-size:.95rem;font-weight:500;color:var(--ink);line-height:1.6;}
+.why{background:var(--bg);border-radius:10px;padding:1.3rem 1.5rem;margin-bottom:1.5rem;border-left:2px solid var(--ink);}
+.wyl{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.4rem;}
+.wyt{font-size:.9rem;color:var(--ink2);line-height:1.7;}
+
+/* GRIDS */
+.rg2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0;}
+.rg3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0;}
+.rgc{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.3rem;}
+.rgl{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.45rem;}
+.rgv{font-size:.88rem;font-weight:500;color:var(--ink);line-height:1.45;}
+
+/* STICKY NOTES */
+.notes{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0;}
+.note{border-radius:8px;padding:1.6rem 1.7rem;transition:transform .2s,box-shadow .2s;}
+.note:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.1);}
+.note-a{background:var(--note-a);}.note-b{background:var(--note-b);}.note-c{background:var(--note-c);}
+.note-d{background:var(--note-d);}.note-e{background:var(--note-e);}.note-f{background:var(--note-f);}
+.nn{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;color:rgba(19,19,24,.4);display:block;margin-bottom:.6rem;}
+.nt{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.1rem;color:var(--ink);margin-bottom:.5rem;}
+.nq{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.92rem;color:var(--ink2);margin-bottom:.8rem;line-height:1.5;}
+.np{list-style:none;}
+.np li{font-size:.82rem;color:var(--ink2);display:flex;gap:.5rem;line-height:1.5;margin-bottom:.25rem;}
+.np li::before{content:'·';color:var(--ink3);flex-shrink:0;}
+
+/* APPROACH GRID (4-method cards) */
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0;}
+.method-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.4rem 1.5rem;}
+.method-tag{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.6rem;}
+.method-name{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.05rem;color:var(--ink);margin-bottom:.5rem;}
+.method-goal{font-size:.8rem;color:var(--ink2);margin-bottom:.8rem;line-height:1.5;font-style:italic;}
+.method-items{list-style:none;}
+.method-items li{font-size:.8rem;color:var(--ink2);display:flex;gap:.5rem;line-height:1.5;margin-bottom:.22rem;}
+.method-items li::before{content:'·';color:var(--ink3);flex-shrink:0;}
+.method-finding{margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--border);}
+.mf-lbl{font-family:'Space Mono',monospace;font-size:.48rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.3rem;}
+.mf-t{font-size:.8rem;font-weight:500;color:var(--ink);line-height:1.4;}
+
+/* REFRAME */
+.reframe{background:var(--bg);border-radius:10px;padding:2rem;margin:1.5rem 0;}
+.reframe-from{font-size:.9rem;color:var(--ink2);line-height:1.6;margin-bottom:1rem;font-style:italic;}
+.reframe-arrow{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--ink3);margin-bottom:1rem;display:block;}
+.reframe-to{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ink);line-height:1.4;font-style:italic;}
+
+/* PRINCIPLES */
+.principles{display:flex;flex-direction:column;gap:.75rem;margin:1.5rem 0;}
+.principle{display:grid;grid-template-columns:2.5rem 1fr;gap:1rem;align-items:start;background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.4rem;}
+.p-num{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.6rem;color:var(--ink3);line-height:1;}
+.p-head{font-size:.82rem;font-weight:600;color:var(--ink);margin-bottom:.25rem;}
+.p-sub{font-size:.8rem;color:var(--ink2);line-height:1.5;}
+
+/* ITERATION TIMELINE */
+.iter-list{display:flex;flex-direction:column;gap:0;margin:1.5rem 0;}
+.iter{display:grid;grid-template-columns:80px 1fr;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--border);align-items:start;}
+.iter:last-child{border-bottom:none;}
+.iter-num{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:2rem;color:var(--ink3);line-height:1;text-align:right;}
+.iter-h{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.1rem;color:var(--ink);margin-bottom:.4rem;}
+.iter-p{font-size:.88rem;color:var(--ink2);line-height:1.7;margin-bottom:.4rem;}
+.iter-result{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-top:.4rem;}
+.iter-badge{display:inline-block;font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;background:var(--bg);border:1px solid var(--border);border-radius:100px;padding:.14rem .58rem;color:var(--ink3);margin-bottom:.6rem;}
+.iter-badge.pass{background:#D1FAE5;border-color:#6EE7B7;color:#065F46;}
+.iter-badge.fail{background:#FFE4E6;border-color:#FCA5A5;color:#991B1B;}
+
+/* IMPACT GRID */
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.ic{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.4rem 1.6rem;}
+.ict{display:inline-block;font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;background:var(--bg);border:1px solid var(--border);border-radius:100px;padding:.14rem .58rem;color:var(--ink3);margin-bottom:.6rem;}
+.icf{font-size:.82rem;color:var(--ink2);margin-bottom:.3rem;line-height:1.5;}
+.ica{font-size:.7rem;color:var(--ink3);display:flex;align-items:center;gap:.25rem;margin-bottom:.25rem;}
+.ica::before{content:'↓';font-size:.75rem;color:var(--ink3);}
+.icto{font-size:.9rem;font-weight:600;color:var(--ink);line-height:1.4;}
+
+/* LEARNINGS */
+.lg{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;}
+.lt{font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:1px solid var(--border);}
+.li-wrap{display:flex;flex-direction:column;gap:.5rem;margin-bottom:2rem;}
+.li{display:flex;align-items:flex-start;gap:.7rem;font-size:.87rem;color:var(--ink2);line-height:1.6;}
+.ld{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:.55rem;}
+.ld.g{background:#16A34A;}.ld.r{background:#DC2626;}
+.tl{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:1.5rem;}
+.tll{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.7rem;}
+.tlu{list-style:none;}
+.tlu li{font-size:.84rem;color:var(--ink2);display:flex;gap:.5rem;line-height:1.5;margin-bottom:.32rem;}
+.tlu li::before{content:'·';color:var(--ink3);flex-shrink:0;}
+.dg{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:1.5rem;}
+.di{display:flex;align-items:center;gap:.7rem;background:#fff;border:1px solid var(--border);border-radius:8px;padding:.68rem 1rem;font-size:.82rem;color:var(--ink2);}
+.dd{width:14px;height:14px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.45rem;color:#fff;font-weight:700;}
+
+/* OUTCOME */
+.ob{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:4rem;}
+.obl{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:1.2rem;}
+.obh{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(1.8rem,3vw,2.5rem);line-height:1.1;letter-spacing:-.022em;color:var(--ink);margin-bottom:1.3rem;}
+.obh em{font-style:italic;}
+.obp{font-size:.92rem;color:var(--ink2);line-height:1.85;margin-bottom:.8rem;max-width:580px;}
+.obt{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:var(--ink3);margin-top:2rem;display:block;}
+
+/* PREV / NEXT */
+.pn{margin-top:4rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.pnc{display:flex;flex-direction:column;gap:.4rem;border-radius:12px;padding:1.8rem 2.2rem;text-decoration:none;color:var(--ink);transition:box-shadow .28s,transform .22s;position:relative;overflow:hidden;}
+.pnc:hover{box-shadow:0 14px 40px rgba(0,0,0,.12);transform:translateY(-3px);}
+.pnc.prev{background:radial-gradient(ellipse 120% 140% at -10% 120%,rgba(254,215,170,.7) 0%,transparent 55%),radial-gradient(ellipse 80% 100% at 110% -10%,rgba(251,207,232,.65) 0%,transparent 55%),radial-gradient(ellipse 60% 80% at 50% 110%,rgba(221,214,254,.5) 0%,transparent 55%),#F7F7FA;}
+.pnc.next{align-items:flex-end;text-align:right;background:radial-gradient(ellipse 120% 140% at 110% 120%,rgba(221,214,254,.7) 0%,transparent 55%),radial-gradient(ellipse 80% 100% at -10% -10%,rgba(253,186,116,.5) 0%,transparent 55%),radial-gradient(ellipse 60% 80% at 50% 110%,rgba(251,207,232,.5) 0%,transparent 55%),#F7F7FA;}
+.pnd{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);}
+.pnt{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.3rem;letter-spacing:-.015em;color:var(--ink);line-height:1.15;}
+.png{font-size:.72rem;color:var(--ink3);}
+
+/* CONSTRAINTS */
+.constraints{list-style:none;margin:1rem 0;}
+.constraints li{display:flex;align-items:flex-start;gap:.8rem;font-size:.9rem;color:var(--ink2);margin-bottom:.45rem;line-height:1.55;}
+.ck{width:16px;height:16px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.5rem;color:#fff;font-weight:700;margin-top:.18rem;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+ nav{padding:.7rem 1rem;}
+ .nav-links{gap:.6rem;}
+ .nav-links a{font-size:.6rem;letter-spacing:.06em;}
+ .logo{font-size:.85rem;}
+ .nav-links .resume{padding:.32rem .7rem;font-size:.58rem;}
+ .cs-header{padding:6rem 1.5rem 0;}
+ .hd{margin:2rem 1.5rem 0;}
+ .cs-body{grid-template-columns:1fr;padding:0 1.5rem 4rem;}
+ .sidebar{display:none;}
+ .content{padding:2.5rem 0 0;}
+ .meta-row .mc{flex:0 0 50%;}
+ .notes,.ig,.lg,.rg2,.method-grid,.tl,.dg{grid-template-columns:1fr;}
+ .rg3{grid-template-columns:1fr 1fr;}
+ .pn{grid-template-columns:1fr;}
+ .ob{padding:2.5rem 1.8rem;}
+ .iter{grid-template-columns:50px 1fr;}
+}
+@media(max-width:600px){
+ .rg3{grid-template-columns:1fr;}
+ .meta-row .mc{flex:0 0 100%;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+ <a class="logo" href="index.html">Renu Nilangekar</a>
+ <ul class="nav-links">
+ <li><a href="index.html#work">Work</a></li>
+ <li><a href="index.html#about">About</a></li>
+ <li><a href="#" class="resume">Resume</a></li>
+ </ul>
+</nav>
+
+<div class="cs-header">
+ <a href="index.html#work" class="cs-back">← Back to Work</a>
+ <h1 class="cs-title">WMS Onboarding</h1>
+ <p class="cs-sub">Understanding Mental Models in Complex Enterprise Systems</p>
+ <div class="meta-row">
+ <div class="mc"><span class="mc-l">Duration</span><span class="mc-v">3 Months</span></div>
+ <div class="mc"><span class="mc-l">Tools</span><span class="mc-v">Figma, Google Docs</span></div>
+ <div class="mc"><span class="mc-l">Team</span><span class="mc-v">Individual</span></div>
+ <div class="mc"><span class="mc-l">Mentor</span><span class="mc-v">Naman Verma · Kabir Shrivastava</span></div>
+ <div class="mc"><span class="mc-l">Internship</span><span class="mc-v">Fynd, Reliance Retail</span></div>
+ <div class="mc"><span class="mc-l">Role</span><span class="mc-v">UX Researcher & Product Designer</span></div>
+ </div>
+</div>
+<div class="hd"></div>
+
+<div class="cs-body">
+ <aside class="sidebar">
+ <span class="sb-lbl">Contents</span>
+ <ul class="toc">
+ <li><a href="#challenge" class="on"><span class="tn">01 /</span>Challenge</a></li>
+ <li><a href="#approach"><span class="tn">02 /</span>Approach</a></li>
+ <li><a href="#insights"><span class="tn">03 /</span>Insights</a></li>
+ <li><a href="#synthesis"><span class="tn">04 /</span>Synthesis</a></li>
+    <li><a href="#iteration"><span class="tn">05 /</span>Iteration</a></li>
+    <li><a href="#solution"><span class="tn">06 /</span>Solution</a></li>
+ <li><a href="#impact"><span class="tn">07 /</span>Impact</a></li>
+ <li><a href="#outcome"><span class="tn">08 /</span>Outcome</a></li>
+ </ul>
+ </aside>
+
+ <main class="content">
+
+ <!-- 01 CHALLENGE -->
+ <section class="cs-sec" id="challenge">
+ <div class="sh"><span class="sh-n">01</span><span class="sh-t">The Research Challenge</span><div class="sh-r"></div></div>
+ <h2 class="sh2">Designing self-serve onboarding for<br/><em>complex enterprise systems.</em></h2>
+ <p class="bp">Fynd's Warehouse Management System required manual backend support for every new warehouse onboarding — making it slow, resource-heavy, and impossible to scale.</p>
+ <p class="bp">Before designing anything, I needed to understand <em>why</em> users couldn't complete onboarding independently.</p>
+
+ <img src="wms-manual-process.png" style="width:100%;border-radius:10px;margin:1.5rem 0;display:block;" alt="Manual WMS onboarding process and non-scalability"/>
+
+ <div class="why">
+ <span class="wyl">System Context</span>
+ <p class="wyt">WMS involves strict hierarchical dependencies: Warehouse → Zone → Rack → Bin. Users struggled with where to start, what depends on what, and when they were "done."</p>
+ </div>
+
+ <div class="rg2">
+ <div class="rqbox" style="margin:0">
+ <span class="rql">Research Question 1</span>
+ <p class="rqt">What prevents warehouse operators from completing onboarding independently?</p>
+ </div>
+ <div class="rqbox" style="margin:0">
+ <span class="rql">Research Question 2</span>
+ <p class="rqt">What mental models do users have about warehouse structure, and how does the system misalign with them?</p>
+ </div>
+ </div>
+ </section>
+
+ <!-- 02 APPROACH -->
+ <section class="cs-sec" id="approach">
+ <div class="sh"><span class="sh-n">02</span><span class="sh-t">Research Approach</span><div class="sh-r"></div></div>
+ <h2 class="sh2">Four methods across <em>desk, field, and system.</em></h2>
+ <p class="bp">Direct access to warehouse operators was limited, so I combined four complementary research methods to build a complete picture from different angles.</p>
+
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1.5rem 0">
+        <img src="wms-approach-slide.jpg" style="width:100%;border-radius:8px;display:block;" alt="Research approach — how I went about it"/>
+        <img src="wms-warehouse-visit.jpg" style="width:100%;border-radius:8px;display:block;object-fit:cover;" alt="Warehouse visit — real-world operational context"/>
+      </div>
+
+ <div class="method-grid">
+ <div class="method-card">
+ <span class="method-tag">Method 01</span>
+ <div class="method-name">Secondary Research & Competitive Analysis</div>
+ <div class="method-goal">Benchmark WMS platforms and identify UX principles for complex onboarding</div>
+ <ul class="method-items">
+ <li>Studied onboarding UX principles: guided interactions, progressive disclosure, clarity</li>
+ <li>Analysed major WMS platforms: Oracle, Softeon, Manhattan Associates, Blue Yonder</li>
+ <li>Manhattan Associates: powerful but complex implementation acts as a barrier for smaller firms</li>
+ <li>Softeon: modularity lets companies choose only what they need — reduces overcomplication</li>
+ <li>Blue Yonder: AI-driven insights improve decision-making — high-value benchmark</li>
+ </ul>
+ <div class="method-finding">
+ <span class="mf-lbl">Key Finding</span>
+ <div class="mf-t">Robustness vs usability is the core tension in enterprise WMS — guided structure beats open complexity</div>
+ </div>
+ </div>
+ <div class="method-card">
+ <span class="method-tag">Method 02</span>
+ <div class="method-name">Contextual Observation — Warehouse Site Visit</div>
+ <div class="method-goal">Understand how physical warehouse operations translate into digital WMS tasks</div>
+ <ul class="method-items">
+ <li>On-site visit to a client warehouse to observe real operations</li>
+ <li>Observed inbound processes: receiving, GRN, quality checks, putaway</li>
+ <li>Found that a single PO can have multiple ASNs — system must handle this complexity</li>
+ <li>Good Received Number comes from the transporter — requires external data integration</li>
+ <li>Workers think spatially; system presents hierarchical data tables</li>
+ </ul>
+ <div class="method-finding">
+ <span class="mf-lbl">Key Finding</span>
+ <div class="mf-t">Physical and digital workflows are deeply misaligned — the system must bridge how staff think and how data is structured</div>
+ </div>
+ </div>
+ <div class="method-card">
+ <span class="method-tag">Method 03</span>
+ <div class="method-name">System & Flow Mapping</div>
+ <div class="method-goal">Map the full WMS onboarding journey and identify all dependency chains</div>
+ <ul class="method-items">
+ <li>Week 1 — WMS Mapping: business requirements and current system setup</li>
+ <li>Weeks 2–3 — WMS Flows: broke down complex onboarding journeys for each persona</li>
+ <li>Identified friction areas where users skip mandatory fields or get stuck</li>
+ <li>Documented edge cases in Layout Setup, Inbound, and Outbound flows</li>
+ <li>Used Mobbin to study trial onboarding flows (Odoo, SKU Savvy) as reference</li>
+ </ul>
+ <div class="method-finding">
+ <span class="mf-lbl">Key Finding</span>
+ <div class="mf-t">Setup order is non-negotiable — dependency violations are the primary cause of failed onboardings</div>
+ </div>
+ </div>
+ <div class="method-card">
+ <span class="method-tag">Method 04</span>
+ <div class="method-name">Stakeholder Collaboration</div>
+ <div class="method-goal">Validate findings and understand technical constraints with internal teams</div>
+ <ul class="method-items">
+ <li>Worked closely with backend and product teams throughout</li>
+ <li>Identified specific steps requiring consistent manual intervention</li>
+ <li>Understood data importation constraints from Fynd Commerce Platform</li>
+ <li>Confirmed all users receive training before using WMS — inherent complexity acknowledged</li>
+ </ul>
+ <div class="method-finding">
+ <span class="mf-lbl">Key Finding</span>
+ <div class="mf-t">The most frequent backend interventions were concentrated in layout setup and first operational task configuration</div>
+ </div>
+ </div>
+ </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0">
+        <img src="wms-ux-principles.jpg" style="width:100%;border-radius:8px;display:block;" alt="UX principles for onboarding — secondary research benchmarking"/>
+        <img src="wms-stages-flow.jpg" style="width:100%;border-radius:8px;display:block;" alt="Basic stages flow — onboarding architecture research"/>
+      </div>
+    </section>
+
+    <!-- 03 INSIGHTS -->
+ <section class="cs-sec" id="insights">
+ <div class="sh"><span class="sh-n">03</span><span class="sh-t">Key Research Insights</span><div class="sh-r"></div></div>
+ <h2 class="sh2">Six insights that reframed<br/><em>the design problem entirely.</em></h2>
+
+ <div class="notes">
+ <div class="note note-a">
+ <span class="nn">Insight 01</span>
+ <div class="nt">Heavy Backend Dependency</div>
+ <p class="nq">The existing process was not self-serve — backend teams manually configured every new client, creating a bottleneck that made scaling impossible.</p>
+ <ul class="np">
+ <li>Each new warehouse required individual backend intervention</li>
+ <li>Could not onboard multiple clients simultaneously</li>
+ <li>Knowledge was not transferable — reliant on specific individuals</li>
+ </ul>
+ </div>
+ <div class="note note-b">
+ <span class="nn">Insight 02</span>
+ <div class="nt">Diverse Personas, Different Needs</div>
+ <p class="nq">Users aren't homogeneous — Supervisors/Admins work on desktop while Workers use Handheld Terminals for real-time tasks.</p>
+ <ul class="np">
+ <li>Supervisors and Admins: desktop, configuration and management focus</li>
+ <li>Workers: HHT-based, real-time scanning and putaway tasks</li>
+ <li>All users receive training before using WMS — inherent complexity acknowledged</li>
+ </ul>
+ </div>
+ <div class="note note-c">
+ <span class="nn">Insight 03</span>
+ <div class="nt">Physical vs. Digital Mismatch</div>
+ <p class="nq">The warehouse visit revealed that staff think spatially about their work — the system presents abstract hierarchical tables.</p>
+ <ul class="np">
+ <li>Staff think in physical zones and storage areas, not data entities</li>
+ <li>A single PO can have multiple ASNs — system must handle this</li>
+ <li>Good Received Number comes from transporter — external data dependency</li>
+ </ul>
+ </div>
+ <div class="note note-d">
+ <span class="nn">Insight 04</span>
+ <div class="nt">Dependency Blindness</div>
+ <p class="nq">Users had no visibility into entity relationships — dependency violations were the primary cause of failed onboardings requiring backend fixes.</p>
+ <ul class="np">
+ <li>Users tried to create bins before racks existed</li>
+ <li>Set up inventory before warehouse structure was complete</li>
+ <li>No system feedback on what was blocking progress</li>
+ </ul>
+ </div>
+ <div class="note note-e">
+ <span class="nn">Insight 05</span>
+ <div class="nt">Competitive Benchmarks → Design Decisions</div>
+ <p class="nq">Each competitor's weakness directly informed a specific design decision for the WMS onboarding solution.</p>
+ <ul class="np">
+ <li>Manhattan Associates: complex implementation → simplified guided onboarding to lower the barrier</li>
+ <li>Softeon: modular solutions → checklist where users configure zones, racks, bins independently</li>
+ <li>Blue Yonder: unintuitive UI → prioritised clarity and simplicity above all else</li>
+ <li>Reference tools: Odoo and SKU Savvy trial flows studied via Mobbin</li>
+ </ul>
+ </div>
+ <div class="note note-f">
+ <span class="nn">Insight 06</span>
+ <div class="nt">Leverage Existing Platform Data</div>
+ <p class="nq">Most users are already on the Fynd Commerce Platform — onboarding should import existing data rather than require re-entry of what the system already knows.</p>
+ <ul class="np">
+ <li>Inventory, company details, users, and warehouse data available via extensions</li>
+ <li>Catalogue Sync from Fynd Platform can automate a key onboarding step</li>
+ <li>Users discover WMS via marketplace — the path must feel seamless, not disconnected</li>
+ </ul>
+ </div>
+ </div>
+
+ <img src="wms-mental-model.png" style="width:100%;border-radius:10px;margin:1.5rem 0;display:block;" alt="User mental model vs system model — spatial thinking vs hierarchical structure"/>
+ </section>
+
+ <!-- 04 SYNTHESIS -->
+ <section class="cs-sec" id="synthesis">
+ <div class="sh"><span class="sh-n">04</span><span class="sh-t">Research Synthesis</span><div class="sh-r"></div></div>
+ <h2 class="sh2">From brief to <em>research-backed strategy.</em></h2>
+
+ <div class="reframe">
+ <div class="reframe-from">Initial Brief: "Design self-serve onboarding"</div>
+ <span class="reframe-arrow">↓ Research-Informed Reframe</span>
+ <div class="reframe-to">"How might we make the warehouse hierarchy mental model explicit and guide users through the correct setup sequence?"</div>
+ </div>
+
+ <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ink);margin:1.8rem 0 1rem">4 Research-Backed Design Principles</h3>
+ <div class="principles">
+ <div class="principle">
+ <div class="p-num">1</div>
+ <div>
+ <div class="p-head">Make the Mental Model Visible</div>
+ <div class="p-sub">Show hierarchy explicitly. Visualise spatial relationships — Warehouse → Zone → Rack → Bin — not just data tables. Addresses Insight 1.</div>
+ </div>
+ </div>
+ <div class="principle">
+ <div class="p-num">2</div>
+ <div>
+ <div class="p-head">Structure Over Simplicity</div>
+ <div class="p-sub">Use progressive disclosure and guided steps. Don't remove complexity — sequence it. Addresses Insight 2.</div>
+ </div>
+ </div>
+ <div class="principle">
+ <div class="p-num">3</div>
+ <div>
+ <div class="p-head">Dependency Enforcement</div>
+ <div class="p-sub">Lock steps until prerequisites are complete. Make dependencies visible. Prevent invalid states before they happen. Addresses Insight 3.</div>
+ </div>
+ </div>
+ <div class="principle">
+ <div class="p-num">4</div>
+ <div>
+ <div class="p-head">Task-Based Framing</div>
+ <div class="p-sub">Organise onboarding by user goals, not system features. Show progress clearly. Define a "done" state. Addresses Insight 4.</div>
+ </div>
+ </div>
+ </div>
+
+ </section>
+
+ <!-- 05 ITERATION -->
+ <section class="cs-sec" id="iteration">
+ <div class="sh"><span class="sh-n">05</span><span class="sh-t">Iterations & Friction Areas</span><div class="sh-r"></div></div>
+ <h2 class="sh2">Four iterations driven by<br/><em>friction areas and edge cases.</em></h2>
+
+ <div class="iter-list">
+ <div class="iter">
+ <div class="iter-num">01</div>
+ <div>
+ <span class="iter-badge fail">Foundation only</span>
+ <div class="iter-h">Skeleton Flows</div>
+ <p class="iter-p">Mapped the basic logic of account creation and redirection from the Fynd Commerce Platform to WMS. Established the entry point architecture — but contained no user-facing onboarding configuration steps yet.</p>
+ <div class="iter-result">Defined starting architecture; identified where the journey begins for existing Fynd users</div>
+ </div>
+ </div>
+ <div class="iter">
+ <div class="iter-num">02</div>
+ <div>
+ <span class="iter-badge fail">WIP 1</span>
+ <div class="iter-h">Basic Preferences — Language, Time Zone, Date Format</div>
+ <p class="iter-p">Introduced the first layer of user-facing configuration. Began shaping onboarding as a step-by-step experience rather than a raw module dump. Identified that preferences alone don't address the heavier layout setup complexity.</p>
+ <div class="iter-result">Right direction; preferences set the tone but left the hardest setup steps unaddressed</div>
+ </div>
+ </div>
+ <div class="iter">
+ <div class="iter-num">03</div>
+ <div>
+ <span class="iter-badge fail">WIP 2</span>
+ <div class="iter-h">Granular Configuration — Measurement Systems & Currency</div>
+ <p class="iter-p">Expanded the configuration surface — Measurement System (Metric vs. Imperial) and Currency. Flow mapping at this stage surfaced the key friction areas: heavy data entry volume and the edge case of users who already had physical stock needing to be mapped.</p>
+ <div class="iter-result">Configuration expanding; friction areas now documented and ready to design around</div>
+ </div>
+ </div>
+ <div class="iter">
+ <div class="iter-num">04</div>
+ <div>
+ <span class="iter-badge pass">Final</span>
+ <div class="iter-h">My Onboarding Checklist — Interactive Dashboard</div>
+ <p class="iter-p">Resolved all identified friction areas in the final version. Each design decision maps directly to a specific finding from research and flow mapping.</p>
+ <ul class="np" style="margin-top:.5rem">
+ <li>Heavy data entry → Default Data auto-populates fields users choose to skip</li>
+ <li>Existing inventory edge case → Modal: "Do you have active inventory to map?"</li>
+ <li>Field irrelevance → Toggle to hide Invoice Number, Vendor for specific flows</li>
+ <li>Dependency blocker → Auto-redirect to Teams if no Pickers assigned during wave creation</li>
+ <li>Progress visibility → 10% → 20% → 40% → 60% → 80% stepper on dashboard</li>
+ </ul>
+ <div class="iter-result">✓ Stakeholder sign-off · Each friction area resolved · Backend dependency eliminated</div>
+ </div>
+ </div>
+ </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0 .75rem">
+        <img src="wms-dashboard-onboarding.jpg" style="width:100%;border-radius:8px;display:block;" alt="Earlier iteration — simpler onboarding stepper"/>
+        <img src="wms-checklist-overlay.jpg" style="width:100%;border-radius:8px;display:block;" alt="Checklist overlay iteration — 20% complete state on Zones page"/>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:0 0 1.5rem">
+        <img src="wms-flow-map-1.jpg" style="width:100%;border-radius:8px;display:block;" alt="WMS full system flow map — inbound, outbound and other flows"/>
+        <img src="wms-flow-mapping-3.jpg" style="width:100%;border-radius:8px;display:block;" alt="WMS detailed flow mapping — dependency and journey documentation"/>
+      </div>
+
+ <div class="why" style="margin-top:1.5rem">
+ <span class="wyl">What Would Strengthen Validation</span>
+ <p class="wyt">Usability testing with actual warehouse operators (5–8 users) · Quantitative baseline of current backend support tickets per onboarding · A/B testing default data vs manual entry · Post-launch measurement of time-to-operational per new client</p>
+ </div>
+ </section>
+
+ <!-- 06 SOLUTION -->
+ <section class="cs-sec" id="solution">
+ <div class="sh"><span class="sh-n">06</span><span class="sh-t">Research-Informed Solution</span><div class="sh-r"></div></div>
+ <h2 class="sh2">From feature-based to <em>task-based onboarding.</em></h2>
+ <p class="bp">Research showed users think in tasks, not features. The solution restructures the entire onboarding flow around user goals.</p>
+
+ <div class="rg2">
+ <div class="rgc" style="background:var(--note-e);">
+ <span class="rgl">Before — Manual & Backend-Dependent</span>
+ <div class="rgv">Backend team manually configured each client. Disconnected modules with no guided flow. Users had no visibility into progress or dependencies.</div>
+ </div>
+ <div class="rgc" style="background:var(--note-d);">
+ <span class="rgl">After — Self-Serve Guided Checklist</span>
+ <div class="rgv">Interactive dashboard checklist: Layout Setup → Team Creation → Catalogue Sync → First Inbound → Process an Order. Progress tracked in real time (e.g. "80% complete").</div>
+ </div>
+ </div>
+
+ <img src="wms-homepage-new.jpg" style="width:100%;border-radius:10px;margin:1.5rem 0;display:block;" alt="WMS Get Started — onboarding checklist 10% complete with dependency-locked steps and zones preview"/>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin:1rem 0 1.5rem">
+        <img src="wms-zones-listing.jpg" style="width:100%;border-radius:8px;display:block;" alt="Zones listing — Zone created successfully, checklist at 20%"/>
+        <img src="wms-create-zone-empty.jpg" style="width:100%;border-radius:8px;display:block;" alt="Create Zone — empty state form"/>
+        <img src="wms-create-zone-filled.jpg" style="width:100%;border-radius:8px;display:block;" alt="Create Zone — filled with Putaway Zone details"/>
+      </div>
+
+ <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ink);margin:1.8rem 0 1rem">The Onboarding Checklist — Step by Step</h3>
+ <div class="principles" style="margin-bottom:2rem">
+ <div class="principle"><div class="p-num">1</div><div><div class="p-head">Layout Setup</div><div class="p-sub">Users define warehouse dimensions (Width, Length, Height), then create the digital hierarchy: Zones → Racks → Bins. Default data auto-populates fields if a user skips during trial.</div></div></div>
+ <div class="principle"><div class="p-num">2</div><div><div class="p-head">Create Team</div><div class="p-sub">Admins invite members, define roles, and assign specific access features. If no Pickers are assigned, the system auto-redirects here during wave creation.</div></div></div>
+ <div class="principle"><div class="p-num">3</div><div><div class="p-head">Create Inbound</div><div class="p-sub">Configure receiving and inspection flows. Triggers a modal: "Do you have active inventory to map?" Custom mapping ensures physical stock reflects accurately in the digital system.</div></div></div>
+ <div class="principle"><div class="p-num">4</div><div><div class="p-head">Process an Order</div><div class="p-sub">Full outbound flow — create a Wave, generate a Picklist, finalise a Manifest. Irrelevant fields (Invoice Number, Vendor) can be toggled off to reduce friction.</div></div></div>
+ </div>
+ <div class="why" style="margin-bottom:1.5rem">
+ <span class="wyl">Guidance Features Built In</span>
+ <p class="wyt">Visual progress bar: 10% → 20% → 40% → 60% → 80% → 100% gives users a clear sense of journey · "My Onboarding Checklist" overlay on dashboard — Start/Go for incomplete tasks, checkmark animations for completed · Dependency feedback: "To create an Inbound you need to complete your layout setup and add users first" · Tooltips guide to the next module once a task is done</p>
+ </div>
+ <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ink);margin:1.8rem 0 1rem">Key Features of the Final Solution</h3>
+ <div class="ig">
+ <div class="ic"><span class="ict">Layout Setup Module</span><p class="icf">Users define warehouse dimensions, then create zones, racks, and bins in the correct dependency order</p><p class="ica">Addresses</p><p class="icto">Dependency blindness — steps lock until prerequisites complete</p></div>
+ <div class="ic"><span class="ict">Catalogue Sync</span><p class="icf">Automatically imports existing inventory and company data from the Fynd Commerce Platform via extensions</p><p class="ica">Addresses</p><p class="icto">Insight 6 — leverage existing platform data, no manual re-entry</p></div>
+ <div class="ic"><span class="ict">Team Management Portal</span><p class="icf">Supervisors create user accounts and assign roles (Admin, Worker) within the onboarding flow</p><p class="ica">Addresses</p><p class="icto">Diverse persona needs — workers get HHT access configured from day one</p></div>
+ <div class="ic"><span class="ict">Operational Flows (Inbound & Outbound)</span><p class="icf">Streamlined first inbound (GRN, QC, putaway) and outbound (wave creation, picklist) visible immediately to workers on HHT</p><p class="ica">Addresses</p><p class="icto">Physical-digital mismatch — On-site warehouse insights directly informed these flows</p></div>
+ </div>
+
+ <div class="rg2" style="margin-top:1.5rem">
+ <img src="wms-inbound-details.jpg" style="width:100%;border-radius:10px;display:block;" alt="Inbound details — GRN flow with 80% checklist progress showing Layout Setup and Create Team complete"/>
+      <img src="wms-warehouse-dimensions.jpg" style="width:100%;border-radius:10px;margin:.75rem 0 0;display:block;" alt="Warehouse details — Width, Length, Height dimension input for Layout Setup"/>
+ 
+ </div>
+ </section>
+
+ <!-- 07 IMPACT -->
+ <section class="cs-sec" id="impact">
+ <div class="sh"><span class="sh-n">07</span><span class="sh-t">Impact & Learnings</span><div class="sh-r"></div></div>
+ <h2 class="sh2">Outcomes & <em>Reflections</em></h2>
+
+ <div class="lg">
+ <div>
+ <span class="lt">What Worked Well</span>
+ <div class="li-wrap">
+ <div class="li"><div class="ld g"></div>Balancing aesthetics with functionality — the modular checklist approach made a genuinely complex system more approachable without hiding its depth</div>
+ <div class="li"><div class="ld g"></div>The warehouse site visit grounded the research in real operational reality — physical observations directly shaped inbound/outbound flow decisions</div>
+ <div class="li"><div class="ld g"></div>Leveraging existing Fynd Platform data via Catalogue Sync eliminated a major friction point without requiring additional design work</div>
+ </div>
+ </div>
+ <div>
+ <span class="lt">What I'd Do Differently</span>
+ <div class="li-wrap">
+ <div class="li"><div class="ld r"></div>Test with actual warehouse operators earlier — the system's complexity was a significant challenge throughout and user testing would have surfaced edge cases sooner</div>
+ <div class="li"><div class="ld r"></div>Establish baseline metrics upfront — current manual onboarding time, error rates, backend support tickets — to measure impact post-launch</div>
+ <div class="li"><div class="ld r"></div>The sheer number of journeys and entities was the hardest constraint — a phased scope with clearly defined MVP boundaries would help manage this</div>
+ </div>
+ </div>
+ </div>
+
+ <div class="tl">
+ <div>
+ <span class="tll">Skills Developed</span>
+ <ul class="tlu">
+ <li>System analysis</li>
+ <li>Contextual observation</li>
+ <li>Secondary research</li>
+ <li>Stakeholder interviews</li>
+ <li>Research synthesis</li>
+ <li>Research-to-design translation</li>
+ </ul>
+ </div>
+ <div>
+ <span class="tll">Research Contributions</span>
+ <ul class="tlu">
+ <li>Identified core problem: mental model mismatch</li>
+ <li>Established 4 research-backed design principles</li>
+ <li>Validated task-based approach through research</li>
+ <li>Informed 3 iterations toward final solution</li>
+ </ul>
+ </div>
+ </div>
+
+ <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--ink);margin:2rem 0 1rem">Project Deliverables</h3>
+ <div class="dg">
+ <div class="di"><div class="dd">✓</div>Competitive WMS analysis (Oracle, Softeon, Manhattan, Blue Yonder)</div>
+ <div class="di"><div class="dd">✓</div>Warehouse site visit observation notes</div>
+ <div class="di"><div class="dd">✓</div>Full WMS entity dependency map</div>
+ <div class="di"><div class="dd">✓</div>3 user persona definitions (Supervisor, Admin, Worker)</div>
+ <div class="di"><div class="dd">✓</div>Skeleton → WIP1 → WIP2 → Final iteration flow</div>
+ <div class="di"><div class="dd">✓</div>Layout Setup module (zones, racks, bins)</div>
+ <div class="di"><div class="dd">✓</div>Interactive onboarding checklist with progress tracking</div>
+ <div class="di"><div class="dd">✓</div>Inbound & outbound operational flows for HHT workers</div>
+ </div>
+
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0">
+
+      </div>
+ </section>
+
+ <!-- 08 OUTCOME -->
+ <section class="cs-sec" id="outcome">
+ <div class="sh"><span class="sh-n">08</span><span class="sh-t">Outcome</span><div class="sh-r"></div></div>
+ <div class="ob">
+ <span class="obl">Final Thoughts</span>
+ <h2 class="obh">A 3-month internship that turned<br/><em>manual bottlenecks into self-serve flows.</em></h2>
+ <p class="obp">This project required understanding a genuinely complex system — multiple user personas, strict dependencies, real warehouse operations — before designing a single screen. The warehouse site visit, competitive benchmarking, and weeks of flow mapping gave the solution its credibility.</p>
+ <p class="obp">The final onboarding checklist eliminates the need for backend intervention in standard client onboarding, allows multiple clients to be onboarded simultaneously, and gives warehouse operators a clear, trackable path from zero to operational — independently.</p>
+ <span class="obt">Thank you for reading ✦</span>
+ </div>
+
+ <div class="pn">
+ <a href="travel-hacks-final.html" class="pnc prev">
+ <span class="pnd">← Previous Project</span>
+ <span class="pnt">Travel Hacks</span>
+ <span class="png">Academic · Harbour Space University</span>
+ </a>
+ <a href="onmyway-cs.html" class="pnc next">
+ <span class="pnd">Next Project →</span>
+ <span class="pnt">On My Way — Board Game</span>
+ <span class="png">Internship · Fynd</span>
+ </a>
+ </div>
+ </section>
+
+ </main>
+</div>
+
+<script>
+var secs=document.querySelectorAll('.cs-sec');
+var links=document.querySelectorAll('.toc a');
+var spy=new IntersectionObserver(function(entries){
+ entries.forEach(function(e){
+ if(e.isIntersecting){
+ links.forEach(function(l){l.classList.remove('on');});
+ var a=document.querySelector('.toc a[href="#'+e.target.id+'"]');
+ if(a)a.classList.add('on');
+ }
+ });
+},{rootMargin:'-20% 0px -70% 0px'});
+secs.forEach(function(s){spy.observe(s);});
+</script>
+
+<style>
+.lb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;}
+.lb-overlay.open{display:flex;}
+.lb-overlay img{max-width:92vw;max-height:90vh;border-radius:8px;object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+.lb-close{position:fixed;top:1.5rem;right:2rem;color:#fff;font-size:2rem;cursor:pointer;line-height:1;z-index:10000;background:none;border:none;opacity:.7;transition:opacity .2s;}
+.lb-close:hover{opacity:1;}
+.cs-zoomable{cursor:zoom-in;transition:opacity .2s;}
+.cs-zoomable:hover{opacity:.9;}
+</style>
+<div class="lb-overlay" id="lb" onclick="this.classList.remove('open')">
+  <button class="lb-close" onclick="document.getElementById('lb').classList.remove('open')">✕</button>
+  <img id="lb-img" src="" alt=""/>
+</div>
+<script>
+document.querySelectorAll('.content img, .cs-sec img').forEach(function(img){
+  img.classList.add('cs-zoomable');
+  img.addEventListener('click', function(){
+    document.getElementById('lb-img').src = this.src;
+    document.getElementById('lb-img').alt = this.alt;
+    document.getElementById('lb').classList.add('open');
+  });
+});
+document.addEventListener('keydown', function(e){
+  if(e.key==='Escape') document.getElementById('lb').classList.remove('open');
+});
+</script>
+</body>
+</html>
