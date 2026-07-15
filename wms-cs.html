@@ -362,12 +362,12 @@ h2.sh2 em{font-style:italic;}
     <!-- 03 INSIGHTS -->
  <section class="cs-sec" id="insights">
  <div class="sh"><span class="sh-n">03</span><span class="sh-t">Key Research Insights</span><div class="sh-r"></div></div>
- <h2 class="sh2">Six insights that reframed<br/><em>the design problem entirely.</em></h2>
+ <h2 class="sh2">What I found once I started<br/><em>actually looking.</em></h2>
 
  <div class="notes">
  <div class="note note-a">
  <span class="nn">Insight 01</span>
- <div class="nt">Heavy Backend Dependency</div>
+ <div class="nt">A human had to set up every new warehouse</div>
  <p class="nq">The existing process was not self-serve — backend teams manually configured every new client, creating a bottleneck that made scaling impossible.</p>
  <ul class="np">
  <li>Each new warehouse required individual backend intervention</li>
@@ -377,7 +377,7 @@ h2.sh2 em{font-style:italic;}
  </div>
  <div class="note note-b">
  <span class="nn">Insight 02</span>
- <div class="nt">Diverse Personas, Different Needs</div>
+ <div class="nt">Admins and floor workers needed completely different things</div>
  <p class="nq">Users aren't homogeneous — Supervisors/Admins work on desktop while Workers use Handheld Terminals for real-time tasks.</p>
  <ul class="np">
  <li>Supervisors and Admins: desktop, configuration and management focus</li>
@@ -387,17 +387,18 @@ h2.sh2 em{font-style:italic;}
  </div>
  <div class="note note-c">
  <span class="nn">Insight 03</span>
- <div class="nt">Physical vs. Digital Mismatch</div>
+ <div class="nt">Workers think in space, the system shows them tables</div>
  <p class="nq">The warehouse visit revealed that staff think spatially about their work — the system presents abstract hierarchical tables.</p>
  <ul class="np">
  <li>Staff think in physical zones and storage areas, not data entities</li>
  <li>A single PO can have multiple ASNs — system must handle this</li>
  <li>Good Received Number comes from transporter — external data dependency</li>
  </ul>
+ <p style="font-size:.78rem;color:var(--ink2);font-style:italic;margin-top:.6rem;padding-top:.6rem;border-top:1px dashed var(--border)">What surprised me: I expected the gap to be about training, not structure. It wasn't that workers didn't understand the system — it's that the system was asking them to think in a way they simply don't, day to day.</p>
  </div>
  <div class="note note-d">
  <span class="nn">Insight 04</span>
- <div class="nt">Dependency Blindness</div>
+ <div class="nt">Users set things up in the wrong order</div>
  <p class="nq">Users had no visibility into entity relationships — dependency violations were the primary cause of failed onboardings requiring backend fixes.</p>
  <ul class="np">
  <li>Users tried to create bins before racks existed</li>
@@ -407,7 +408,7 @@ h2.sh2 em{font-style:italic;}
  </div>
  <div class="note note-e">
  <span class="nn">Insight 05</span>
- <div class="nt">Competitive Benchmarks → Design Decisions</div>
+ <div class="nt">Other tools were either too rigid or too messy</div>
  <p class="nq">Each competitor's weakness directly informed a specific design decision for the WMS onboarding solution.</p>
  <ul class="np">
  <li>Manhattan Associates: complex implementation → simplified guided onboarding to lower the barrier</li>
@@ -418,7 +419,7 @@ h2.sh2 em{font-style:italic;}
  </div>
  <div class="note note-f">
  <span class="nn">Insight 06</span>
- <div class="nt">Leverage Existing Platform Data</div>
+ <div class="nt">Users were re-entering data the system already had</div>
  <p class="nq">Most users are already on the Fynd Commerce Platform — onboarding should import existing data rather than require re-entry of what the system already knows.</p>
  <ul class="np">
  <li>Inventory, company details, users, and warehouse data available via extensions</li>
@@ -434,7 +435,7 @@ h2.sh2 em{font-style:italic;}
  <!-- 04 SYNTHESIS -->
  <section class="cs-sec" id="synthesis">
  <div class="sh"><span class="sh-n">04</span><span class="sh-t">Research Synthesis</span><div class="sh-r"></div></div>
- <h2 class="sh2">From brief to <em>research-backed strategy.</em></h2>
+ <h2 class="sh2">Where the brief stopped<br/><em>matching the problem.</em></h2>
 
  <div class="reframe">
  <div class="reframe-from">Initial Brief: "Design self-serve onboarding"</div>
@@ -497,7 +498,7 @@ h2.sh2 em{font-style:italic;}
  <span class="iter-badge fail">WIP 1</span>
  <div class="iter-h">Basic Preferences — Language, Time Zone, Date Format</div>
  <p class="iter-p">Introduced the first layer of user-facing configuration. Began shaping onboarding as a step-by-step experience rather than a raw module dump. Identified that preferences alone don't address the heavier layout setup complexity.</p>
- <div class="iter-result">Right direction; preferences set the tone but left the hardest setup steps unaddressed</div>
+ <div class="iter-result">This version felt too thin once I tested it against the actual flow — preferences are easy to design for, but they weren't where the real friction lived</div>
  </div>
  </div>
  <div class="iter">
@@ -522,7 +523,7 @@ h2.sh2 em{font-style:italic;}
  <li>Dependency blocker → Auto-redirect to Teams if no Pickers assigned during wave creation</li>
  <li>Progress visibility → 10% → 20% → 40% → 60% → 80% stepper on dashboard</li>
  </ul>
- <div class="iter-result">✓ Stakeholder sign-off · Each friction area resolved · Backend dependency eliminated</div>
+ <div class="iter-result">This is the version that finally got internal agreement — not because it was the simplest, but because it was the first one where people could see exactly why each step existed</div>
  </div>
  </div>
  </div>
@@ -557,6 +558,11 @@ h2.sh2 em{font-style:italic;}
  <span class="rgl">After — Self-Serve Guided Checklist</span>
  <div class="rgv">Interactive dashboard checklist: Layout Setup → Team Creation → Catalogue Sync → First Inbound → Process an Order. Progress tracked in real time (e.g. "80% complete").</div>
  </div>
+ </div>
+
+ <div class="why" style="margin:1.5rem 0">
+ <span class="wyl">A Tradeoff I Had to Make</span>
+ <p class="wyt">My first instinct was to simplify the checklist down to 2-3 steps to reduce perceived effort. But that meant hiding dependency logic the system actually needed users to follow — which would have just moved the failure point later. I ended up keeping 4 distinct steps and leaning on progressive disclosure instead, even though it meant the onboarding looked "longer" on paper. It was a harder sell internally than I expected, since the instinct from stakeholders was also to compress the flow.</p>
  </div>
 
  <img src="wms-homepage-new.jpg" style="width:100%;border-radius:10px;margin:1.5rem 0;display:block;" alt="WMS Get Started — onboarding checklist 10% complete with dependency-locked steps and zones preview"/>
@@ -613,8 +619,8 @@ h2.sh2 em{font-style:italic;}
  </div>
 
  <div style="background:#F0F7FF;border-left:3px solid #3B82F6;border-radius:0 8px 8px 0;padding:1rem 1.2rem;margin:0 0 2rem">
-  <div style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#3B82F6;font-weight:500;margin-bottom:.5rem">Research Impact</div>
-  <p style="font-size:.9rem;color:var(--ink);line-height:1.7;margin:0">Insights from stakeholder interviews and warehouse site visits directly informed the redesign of the onboarding flow — replacing a feature-based structure with a task-based checklist adopted by the product and design team. The core research finding (users skipping mandatory fields due to friction) drove the dependency enforcement system that became the backbone of the final solution.</p>
+  <div style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#3B82F6;font-weight:500;margin-bottom:.5rem">What Actually Changed</div>
+  <p style="font-size:.9rem;color:var(--ink);line-height:1.7;margin:0">The product and design team adopted the task-based checklist structure as the direction going forward, replacing the original feature-based module list. The biggest shift was internal — once the dependency-locking logic was shown working in the prototype, the conversation moved from "how do we simplify this" to "how do we sequence this," which was the actual problem all along. The internship ended with the design handed off as the agreed direction for engineering scoping; I didn't get to see post-launch numbers, which is the piece I'd most want to follow up on if I ever got the chance.</p>
  </div>
 
  <div class="lg">
