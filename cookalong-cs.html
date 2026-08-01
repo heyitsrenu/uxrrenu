@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="color-scheme" content="light"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cook-Along Mode — Renu Nilangekar</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+ --ink:#131318;--ink2:#5C5C72;--ink3:#9A9AB0;--border:#E4E4EF;--bg:#F7F7FA;--white:#fff;
+ --citrus:#D6F04C;--coral:#FF7A59;--teal:#1F3A34;--lime:#B7E778;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#fff!important;forced-color-adjust:none;color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(255,255,255,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none}
+.nav-r{display:flex;align-items:center;gap:1.8rem;list-style:none}
+.nav-r a{font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);text-decoration:none}
+.nav-r a:hover{color:var(--ink)}
+.nav-r .btn{background:var(--ink);color:#fff!important;padding:.42rem 1.1rem;border-radius:100px}
+
+.cs-header{max-width:1200px;margin:0 auto;padding:7rem 3rem 0}
+.cs-back{display:inline-flex;align-items:center;gap:.5rem;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);text-decoration:none;margin-bottom:2.2rem;transition:color .2s}
+.cs-back:hover{color:var(--ink)}
+.cs-tag{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--border);border-radius:100px;padding:.3rem .9rem;margin-bottom:1.4rem;font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2)}
+.cs-tag .dot{width:5px;height:5px;border-radius:50%;background:var(--coral)}
+.cs-title{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(3rem,7vw,5.5rem);line-height:.9;letter-spacing:-.03em;color:var(--ink);margin-bottom:.7rem}
+.cs-title em{font-style:italic}
+.cs-sub{font-size:.97rem;color:var(--ink2);margin-bottom:2.2rem;max-width:640px}
+
+.meta-row{display:flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff;flex-wrap:wrap}
+.mc{flex:1;min-width:150px;padding:1rem 1.4rem;border-right:1px solid var(--border)}
+.mc:last-child{border-right:none}
+.mc-l{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:.28rem}
+.mc-v{font-size:.83rem;font-weight:500;color:var(--ink);line-height:1.4}
+
+.hd{height:1px;background:var(--border);margin:2.5rem 3rem 0}
+
+.cs-body{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:200px 1fr;padding:0 3rem 5rem}
+.sidebar{position:sticky;top:5rem;height:fit-content;padding:3rem 2rem 3rem 0;border-right:1px solid var(--border)}
+.sb-lbl{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:1rem}
+.toc{list-style:none}
+.toc a{display:flex;align-items:center;gap:.55rem;padding:.48rem 0 .48rem .85rem;text-decoration:none;font-size:.78rem;color:var(--ink3);border-left:2px solid transparent;transition:color .2s,border-color .2s;line-height:1.4}
+.toc a:hover{color:var(--ink);border-color:var(--ink3)}
+.toc a.on{color:var(--ink);border-color:var(--ink);font-weight:500}
+.tn{font-family:'Space Mono',monospace;font-size:.56rem;min-width:1.5rem;flex-shrink:0}
+
+.content{padding:3rem 0 0 3.5rem}
+.cs-sec{margin-bottom:5.5rem;scroll-margin-top:5.5rem}
+.sh{display:flex;align-items:center;gap:.9rem;margin-bottom:2rem}
+.sh-n{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;color:var(--ink3)}
+.sh-t{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);font-weight:500}
+.sh-r{flex:1;height:1px;background:var(--border)}
+h2.sh2{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(1.9rem,3.2vw,2.6rem);letter-spacing:-.022em;line-height:1.1;color:var(--ink);margin-bottom:1.3rem}
+h2.sh2 em{font-style:italic}
+.bp{font-size:.93rem;color:var(--ink2);line-height:1.88;margin-bottom:1rem;max-width:680px}
+
+/* BRIEF QUOTE */
+.brief-quote{background:var(--teal);border-radius:14px;padding:2.4rem 2.6rem;margin:1.5rem 0 2rem;position:relative;overflow:hidden}
+.brief-quote::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 85% 10%,rgba(214,240,76,.25),transparent 60%),radial-gradient(ellipse 50% 50% at 10% 90%,rgba(255,122,89,.22),transparent 60%)}
+.bq-l{position:relative;font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);display:block;margin-bottom:1rem}
+.bq-t{position:relative;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:1.35rem;line-height:1.55;color:#fff;max-width:680px}
+
+.constraint-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin:1.5rem 0}
+.ccard{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.5rem 1.6rem}
+.cc-ico{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:1rem}
+.cc-a .cc-ico{background:#FFE9DE}
+.cc-b .cc-ico{background:#E9F7D6}
+.cc-c .cc-ico{background:#E4E9FF}
+.cc-t{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.15rem;color:var(--ink);margin-bottom:.5rem;letter-spacing:-.01em}
+.cc-p{font-size:.83rem;color:var(--ink2);line-height:1.65}
+
+/* PRINCIPLES */
+.prin-list{display:flex;flex-direction:column;gap:.9rem;margin:1.5rem 0}
+.prin{display:grid;grid-template-columns:56px 1fr;gap:1.3rem;padding:1.4rem 0;border-top:1px solid var(--border)}
+.prin:last-child{border-bottom:1px solid var(--border)}
+.prin-n{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.6rem;color:var(--ink3)}
+.prin-t{font-size:.98rem;font-weight:500;color:var(--ink);margin-bottom:.35rem}
+.prin-d{font-size:.85rem;color:var(--ink2);line-height:1.7;max-width:600px}
+
+/* PROTOTYPE STAGE */
+.stage-wrap{background:var(--bg);border:1px solid var(--border);border-radius:18px;padding:3rem;margin:1.5rem 0}
+.stage{display:flex;justify-content:center}
+.pad{width:100%;max-width:680px;background:#0c0c10;border-radius:32px;padding:14px;box-shadow:0 30px 60px rgba(0,0,0,.25)}
+.screen{position:relative;background:#12201c;border-radius:22px;overflow:hidden;aspect-ratio:4/3;background-image:radial-gradient(ellipse 60% 55% at 15% 15%,rgba(214,240,76,.35),transparent 60%),radial-gradient(ellipse 55% 55% at 90% 85%,rgba(255,122,89,.35),transparent 60%),radial-gradient(ellipse 70% 70% at 90% 5%,rgba(183,231,120,.18),transparent 60%),linear-gradient(160deg,#132621,#0d1a16)}
+.screen-top{position:relative;z-index:3;display:flex;align-items:center;gap:.8rem;padding:1rem 1.3rem .6rem}
+.progress-track{flex:1;height:4px;border-radius:100px;background:rgba(255,255,255,.14);overflow:hidden}
+.progress-fill{height:100%;background:var(--citrus);border-radius:100px;transition:width .4s ease}
+.step-count{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.08em;color:rgba(255,255,255,.6);white-space:nowrap}
+.orb{width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,var(--citrus) 55%,#8fae2a 100%);flex-shrink:0;box-shadow:0 0 0 0 rgba(214,240,76,.6);transition:box-shadow .3s}
+.orb.listening{animation:orbpulse 1.1s ease-in-out infinite}
+@keyframes orbpulse{0%{box-shadow:0 0 0 0 rgba(214,240,76,.55)}70%{box-shadow:0 0 0 10px rgba(214,240,76,0)}100%{box-shadow:0 0 0 0 rgba(214,240,76,0)}}
+
+.timer-dock{position:relative;z-index:3;display:flex;gap:.5rem;padding:0 1.3rem .7rem;flex-wrap:wrap;min-height:0}
+.tchip{display:flex;align-items:center;gap:.45rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);border-radius:100px;padding:.32rem .8rem .32rem .5rem;backdrop-filter:blur(6px)}
+.tchip .ring{width:16px;height:16px;border-radius:50%;background:conic-gradient(var(--citrus) calc(var(--pct,100)*1%),rgba(255,255,255,.18) 0);flex-shrink:0;position:relative}
+.tchip .ring::after{content:'';position:absolute;inset:2px;border-radius:50%;background:#152b25}
+.tchip.done{background:rgba(214,240,76,.22);border-color:rgba(214,240,76,.4)}
+.tchip-txt{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.03em;color:#fff;white-space:nowrap}
+.tchip-time{font-weight:700;color:var(--citrus)}
+
+.stage-main{position:relative;z-index:2;display:grid;grid-template-columns:64px 1fr 64px;align-items:stretch;height:calc(100% - 66px)}
+.edge{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(255,255,255,.05);cursor:pointer;transition:background .15s;user-select:none;border:none}
+.edge:hover{background:rgba(255,255,255,.12)}
+.edge:active{background:rgba(214,240,76,.2)}
+.edge-chev{font-size:1.5rem;color:rgba(255,255,255,.55)}
+.edge-lbl{position:absolute;bottom:14px;writing-mode:vertical-rl;font-family:'Space Mono',monospace;font-size:.44rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+
+.step-main{padding:1.2rem 1.6rem;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1rem;position:relative}
+.step-icon{font-size:2.6rem;line-height:1}
+.step-text{font-family:'Outfit',sans-serif;font-weight:600;font-size:clamp(1.15rem,3vw,1.55rem);line-height:1.35;color:#fff;max-width:420px}
+.ing-row{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
+.ing-chip{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.02em;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);color:var(--citrus);padding:.3rem .75rem;border-radius:100px}
+.caption-bubble{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.55);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:.4rem 1rem;font-size:.68rem;color:#fff;display:flex;align-items:center;gap:.4rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+.caption-bubble.show{opacity:1;transform:translateX(-50%) translateY(-4px)}
+.caption-bubble .mic{font-size:.72rem}
+
+.serv-row{position:relative;z-index:3;display:flex;align-items:center;justify-content:center;gap:.7rem;padding:.5rem 1.3rem .9rem}
+.serv-lbl{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.serv-btn{width:24px;height:24px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);color:#fff;font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.serv-btn:hover{background:rgba(255,255,255,.2)}
+.serv-n{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--citrus);min-width:1.4rem;text-align:center}
+
+.alert-overlay{position:absolute;inset:0;z-index:5;background:rgba(10,18,15,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1rem;text-align:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.alert-overlay.show{opacity:1;pointer-events:auto}
+.alert-ico{font-size:2.8rem}
+.alert-t{font-family:'Outfit',sans-serif;font-weight:600;font-size:1.2rem;color:#fff}
+.alert-p{font-size:.75rem;color:rgba(255,255,255,.6);max-width:280px}
+.alert-hint{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--citrus);border:1px solid rgba(214,240,76,.4);border-radius:100px;padding:.4rem 1rem;margin-top:.4rem}
+
+/* CONTROLS BELOW STAGE */
+.ctrl-legend{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.8rem}
+.ctrl-col{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.2rem 1.3rem}
+.ctrl-h{display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem}
+.ctrl-ico{font-size:1.1rem}
+.ctrl-t{font-size:.85rem;font-weight:500;color:var(--ink)}
+.ctrl-d{font-size:.75rem;color:var(--ink3);line-height:1.5;margin-bottom:.9rem}
+.pill-row{display:flex;flex-wrap:wrap;gap:.4rem}
+.pill-btn{font-family:'Outfit',sans-serif;font-size:.72rem;color:var(--ink2);background:var(--bg);border:1px solid var(--border);border-radius:100px;padding:.4rem .85rem;cursor:pointer;transition:all .15s}
+.pill-btn:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.reset-row{display:flex;justify-content:center;margin-top:1.2rem}
+.reset-btn{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);background:none;border:1px solid var(--border);border-radius:100px;padding:.5rem 1.2rem;cursor:pointer;transition:all .15s}
+.reset-btn:hover{color:var(--ink);border-color:var(--ink3)}
+
+/* STORYBOARD */
+.story-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin:1.5rem 0}
+.sframe{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow .2s,transform .2s}
+.sframe:hover{box-shadow:0 12px 30px rgba(0,0,0,.08);transform:translateY(-2px)}
+.sf-visual{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;position:relative;font-size:2.2rem;border-bottom:1px solid var(--border)}
+.sf-1 .sf-visual{background:linear-gradient(155deg,#FFF3EA,#FFE1CF)}
+.sf-2 .sf-visual{background:linear-gradient(155deg,#12201c,#1b332b)}
+.sf-3 .sf-visual{background:linear-gradient(155deg,#12201c,#1b332b)}
+.sf-4 .sf-visual{background:linear-gradient(155deg,#12201c,#1b332b)}
+.sf-5 .sf-visual{background:linear-gradient(155deg,#12201c,#1b332b)}
+.sf-6 .sf-visual{background:linear-gradient(155deg,#2a1414,#3a1d1d)}
+.sf-badge{position:absolute;top:.7rem;left:.7rem;font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.1em;background:rgba(0,0,0,.35);color:#fff;border-radius:100px;padding:.2rem .6rem}
+.sf-body{padding:1.1rem 1.3rem 1.3rem}
+.sf-t{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.05rem;color:var(--ink);margin-bottom:.4rem}
+.sf-p{font-size:.8rem;color:var(--ink2);line-height:1.6}
+
+/* OUTCOME */
+.ob{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:3.5rem;position:relative;overflow:hidden}
+.obl{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:1.2rem}
+.obh{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(1.8rem,3vw,2.5rem);line-height:1.1;letter-spacing:-.022em;color:var(--ink);margin-bottom:1.3rem}
+.obh em{font-style:italic}
+.obp{font-size:.92rem;color:var(--ink2);line-height:1.85;margin-bottom:.8rem;max-width:600px}
+
+.pn{margin-top:4rem;display:flex;justify-content:center}
+.pnc{display:inline-flex;align-items:center;gap:.6rem;background:var(--ink);color:#fff;text-decoration:none;padding:.85rem 1.9rem;border-radius:100px;font-size:.82rem;font-weight:500;transition:opacity .2s}
+.pnc:hover{opacity:.8}
+
+footer{border-top:1px solid var(--border);padding:1.6rem 3rem;display:flex;align-items:center;justify-content:space-between;background:#fff}
+.f-copy{font-size:.7rem;color:var(--ink3)}
+.f-links{display:flex;gap:1.8rem;list-style:none}
+.f-links a{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);text-decoration:none}
+.f-links a:hover{color:var(--ink)}
+
+@media(max-width:1024px){
+ .cs-body{grid-template-columns:1fr}
+ .sidebar{display:none}
+ .content{padding:2.5rem 0 0}
+ .constraint-grid{grid-template-columns:1fr}
+ .ctrl-legend{grid-template-columns:1fr}
+ .story-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+ nav{padding:.8rem 1.2rem}
+ .nav-r{gap:.7rem}
+ .nav-r a{font-size:.6rem}
+ .cs-header{padding:5.5rem 1.2rem 0}
+ .hd{margin:2rem 1.2rem 0}
+ .cs-body{padding:0 1.2rem 3.5rem}
+ .stage-wrap{padding:1.4rem}
+ .step-icon{font-size:2rem}
+ .edge{width:44px}
+ .story-grid{grid-template-columns:1fr}
+ .ob{padding:2rem}
+ footer{padding:1.2rem;flex-direction:column;gap:.8rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+ <a class="logo" href="/uxrrenu/index.html">Renu Nilangekar</a>
+ <ul class="nav-r">
+ <li><a href="/uxrrenu/index.html#work">Work</a></li>
+ <li><a href="/uxrrenu/index.html#about">About</a></li>
+ <li><a href="/uxrrenu/uxrresume.pdf" target="_blank" class="btn">Resume</a></li>
+ </ul>
+</nav>
+
+<div class="cs-header">
+ <a href="/uxrrenu/index.html#work" class="cs-back">← Back to Work</a>
+ <div class="cs-tag"><div class="dot"></div>Design Challenge · Head of Design Brief</div>
+ <h1 class="cs-title">Cook-Along <em>Mode.</em></h1>
+ <p class="cs-sub">Redesigning a tablet recipe page for the moment your hands are covered in flour, oil, or water — a zero-touch interface designed the way Apple designs: reduce, don't decorate.</p>
+ <div class="meta-row">
+ <div class="mc"><span class="mc-l">Brief</span><span class="mc-v">The "Messy Hands" Cooking Mode</span></div>
+ <div class="mc"><span class="mc-l">Platform</span><span class="mc-v">Tablet, propped 3–5 ft away</span></div>
+ <div class="mc"><span class="mc-l">Input</span><span class="mc-v">Voice · Air Gesture · Elbow Target</span></div>
+ <div class="mc"><span class="mc-l">Deliverables</span><span class="mc-v">Interface design + interaction prototype</span></div>
+ </div>
+</div>
+<div class="hd"></div>
+
+<div class="cs-body">
+ <aside class="sidebar">
+ <span class="sb-lbl">Contents</span>
+ <ul class="toc">
+ <li><a href="#brief" class="on"><span class="tn">01 /</span>Brief</a></li>
+ <li><a href="#principles"><span class="tn">02 /</span>Principles</a></li>
+ <li><a href="#prototype"><span class="tn">03 /</span>Prototype</a></li>
+ <li><a href="#storyboard"><span class="tn">04 /</span>Storyboard</a></li>
+ <li><a href="#outcome"><span class="tn">05 /</span>Outcome</a></li>
+ </ul>
+ </aside>
+
+ <div class="content">
+
+  <section class="cs-sec" id="brief">
+   <div class="sh"><span class="sh-n">01</span><span class="sh-t">The Brief</span><div class="sh-r"></div></div>
+   <h2 class="sh2">A recipe page nobody can <em>touch.</em></h2>
+   <p class="bp">The brief: redesign a tablet recipe page into a "Cook-Along Mode" for users whose hands are covered in flour, oil, or water — mid-recipe, tablet propped against the backsplash, three to five feet away.</p>
+   <div class="brief-quote">
+    <span class="bq-l">Original brief</span>
+    <p class="bq-t">"Redesign a tablet recipe page into a Cook-Along Mode for users whose hands are covered in flour, oil, or water. Legibility optimised for a 3–5 ft viewing distance. Propose non-standard, zero-touch inputs. Manage multiple active timers and ingredient scaling without clutter."</p>
+   </div>
+   <div class="constraint-grid">
+    <div class="ccard cc-a">
+     <div class="cc-ico">👁️</div>
+     <div class="cc-t">Legibility</div>
+     <p class="cc-p">Optimised for a viewing distance of 3–5 feet — no squinting, no leaning in with a dirty hand.</p>
+    </div>
+    <div class="ccard cc-b">
+     <div class="cc-ico">🚫</div>
+     <div class="cc-t">Zero-Touch Interaction</div>
+     <p class="cc-p">Standard taps are off the table. Needs voice, camera gesture, or high-affordance "elbow" targets.</p>
+    </div>
+    <div class="ccard cc-c">
+     <div class="cc-ico">🧠</div>
+     <div class="cc-t">Cognitive Load</div>
+     <p class="cc-p">Multiple active timers and scaled ingredients, managed without ever cluttering the screen.</p>
+    </div>
+   </div>
+  </section>
+
+  <section class="cs-sec" id="principles">
+   <div class="sh"><span class="sh-n">02</span><span class="sh-t">Principles</span><div class="sh-r"></div></div>
+   <h2 class="sh2">Four decisions that <em>carry the design.</em></h2>
+   <p class="bp">Apple's design language isn't about adding affordances — it's about removing everything that isn't the current decision. Applied to a kitchen counter, that means one instruction, one glance, and inputs that assume the user's hands are unusable.</p>
+   <div class="prin-list">
+    <div class="prin">
+     <span class="prin-n">01</span>
+     <div>
+      <div class="prin-t">One step fills the screen — never the full recipe</div>
+      <p class="prin-d">The ingredient list and thirty-step method disappear the moment Cook-Along starts. Only the current step, in type large enough to read from 3–5 ft, stays on screen. Progress is a thin bar, not a scroll position to track.</p>
+     </div>
+    </div>
+    <div class="prin">
+     <span class="prin-n">02</span>
+     <div>
+      <div class="prin-t">Three tiers of hands-free input, escalating with the kitchen's noise</div>
+      <p class="prin-d">Voice is primary and fastest. If the extractor fan or a blender drowns it out, an air gesture at the front camera works instead. If neither lands, a full-height "elbow zone" on each screen edge is always visible and always tappable with a knuckle, forearm, or elbow.</p>
+     </div>
+    </div>
+    <div class="prin">
+     <span class="prin-n">03</span>
+     <div>
+      <div class="prin-t">Timers live in a dock, not on the stage</div>
+      <p class="prin-d">Active timers collapse into small chips that sit above the step, glanceable but never competing with it. A timer only claims the full screen at the one moment it actually needs a decision: when it finishes.</p>
+     </div>
+    </div>
+    <div class="prin">
+     <span class="prin-n">04</span>
+     <div>
+      <div class="prin-t">The system shows what it heard before it acts</div>
+      <p class="prin-d">Because the user can't glance down to correct a misfire with a tap, every voice or gesture command surfaces a caption first — confirming the command that's about to run, not just executing silently.</p>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <section class="cs-sec" id="prototype">
+   <div class="sh"><span class="sh-n">03</span><span class="sh-t">Prototype</span><div class="sh-r"></div></div>
+   <h2 class="sh2">Try the <em>interaction logic.</em></h2>
+   <p class="bp">This is a working model of the interface, not a static mockup. Use the controls below the frame to simulate the three zero-touch inputs, or click directly on the edge zones the way an elbow would.</p>
+
+   <div class="stage-wrap">
+    <div class="stage">
+     <div class="pad">
+      <div class="screen" id="screen">
+
+       <div class="screen-top">
+        <div class="orb" id="orb"></div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <span class="step-count" id="stepCount">Step 1 / 6</span>
+       </div>
+
+       <div class="timer-dock" id="timerDock"></div>
+
+       <div class="stage-main">
+        <button class="edge" id="edgeLeft" aria-label="Previous step — elbow target">
+         <span class="edge-chev">‹</span>
+         <span class="edge-lbl">ELBOW · BACK</span>
+        </button>
+
+        <div class="step-main">
+         <div class="step-icon" id="stepIcon">🔥</div>
+         <div class="step-text" id="stepText">Preheat the oven to 220°C while you prep everything else.</div>
+         <div class="ing-row" id="ingRow"></div>
+         <div class="caption-bubble" id="captionBubble"><span class="mic">🎤</span><span id="captionText"></span></div>
+        </div>
+
+        <button class="edge" id="edgeRight" aria-label="Next step — elbow target">
+         <span class="edge-chev">›</span>
+         <span class="edge-lbl">ELBOW · NEXT</span>
+        </button>
+       </div>
+
+       <div class="serv-row">
+        <span class="serv-lbl">Serves</span>
+        <button class="serv-btn" id="servMinus">–</button>
+        <span class="serv-n" id="servCount">2</span>
+        <button class="serv-btn" id="servPlus">+</button>
+       </div>
+
+       <div class="alert-overlay" id="alertOverlay">
+        <div class="alert-ico" id="alertIcon">⏰</div>
+        <div class="alert-t" id="alertTitle">Potatoes are ready</div>
+        <div class="alert-p" id="alertBody">Say "dismiss," wave at the camera, or tap either edge zone to clear this.</div>
+        <div class="alert-hint">Tap anywhere to dismiss</div>
+       </div>
+
+      </div>
+     </div>
+    </div>
+
+    <div class="ctrl-legend">
+     <div class="ctrl-col">
+      <div class="ctrl-h"><span class="ctrl-ico">🎤</span><span class="ctrl-t">Voice</span></div>
+      <p class="ctrl-d">Primary input. Always listening — the orb pulses to confirm, and a caption shows what it heard before acting.</p>
+      <div class="pill-row">
+       <button class="pill-btn" data-voice="next">"Next step"</button>
+       <button class="pill-btn" data-voice="repeat">"Repeat that"</button>
+       <button class="pill-btn" data-voice="timer">"Set a timer"</button>
+       <button class="pill-btn" data-voice="serves4">"Serves 4"</button>
+      </div>
+     </div>
+     <div class="ctrl-col">
+      <div class="ctrl-h"><span class="ctrl-ico">👋</span><span class="ctrl-t">Air Gesture</span></div>
+      <p class="ctrl-d">Fallback for a loud kitchen. The front camera reads a swipe in the air — no need to get close or speak.</p>
+      <div class="pill-row">
+       <button class="pill-btn" data-gesture="next">👋 Swipe forward</button>
+       <button class="pill-btn" data-gesture="prev">🤚 Swipe back</button>
+      </div>
+     </div>
+     <div class="ctrl-col">
+      <div class="ctrl-h"><span class="ctrl-ico">💪</span><span class="ctrl-t">Elbow Target</span></div>
+      <p class="ctrl-d">Fallback of last resort. Two full-height glass zones on the frame itself — click them directly, the way a forearm would press them.</p>
+      <div class="pill-row">
+       <button class="pill-btn" id="hintElbow">↑ Click the frame's edges above</button>
+      </div>
+     </div>
+    </div>
+    <div class="reset-row"><button class="reset-btn" id="resetBtn">↺ Restart demo</button></div>
+   </div>
+  </section>
+
+  <section class="cs-sec" id="storyboard">
+   <div class="sh"><span class="sh-n">04</span><span class="sh-t">Storyboard</span><div class="sh-r"></div></div>
+   <h2 class="sh2">How the logic plays out at the <em>counter.</em></h2>
+   <p class="bp">Six moments across one recipe — from clean hands starting the mode, to a fallback gesture in a noisy kitchen, to a timer interrupting only when it has to.</p>
+   <div class="story-grid">
+    <div class="sframe sf-1">
+     <div class="sf-visual"><span class="sf-badge">01</span>🧼</div>
+     <div class="sf-body"><div class="sf-t">Hands clean, hands free</div><p class="sf-p">Before touching a single ingredient, the cook taps "Start Cook-Along" — the last touch input the session will ever need.</p></div>
+    </div>
+    <div class="sframe sf-2">
+     <div class="sf-visual"><span class="sf-badge">02</span>🎯</div>
+     <div class="sf-body"><div class="sf-t">One step, full focus</div><p class="sf-p">The full recipe disappears. Step one fills the screen in type readable from across the counter; the listening orb switches on.</p></div>
+    </div>
+    <div class="sframe sf-3">
+     <div class="sf-visual"><span class="sf-badge">03</span>🗣️</div>
+     <div class="sf-body"><div class="sf-t">Hands get messy</div><p class="sf-p">Dough on both hands, the cook says "next step" from four feet away. A caption confirms the words before the step actually advances.</p></div>
+    </div>
+    <div class="sframe sf-4">
+     <div class="sf-visual"><span class="sf-badge">04</span>👋</div>
+     <div class="sf-body"><div class="sf-t">No mic? No problem</div><p class="sf-p">The extractor fan is roaring. The cook waves at the camera instead — a ghost trail confirms the swipe was seen and understood.</p></div>
+    </div>
+    <div class="sframe sf-5">
+     <div class="sf-visual"><span class="sf-badge">05</span>⏱️</div>
+     <div class="sf-body"><div class="sf-t">Two timers, zero clutter</div><p class="sf-p">Potatoes and salmon roast on different clocks. Both sit quietly as small chips in the dock while the cook keeps working the current step.</p></div>
+    </div>
+    <div class="sframe sf-6">
+     <div class="sf-visual"><span class="sf-badge">06</span>🔔</div>
+     <div class="sf-body"><div class="sf-t">Only interrupt when it matters</div><p class="sf-p">The moment a timer hits zero, it's the one thing allowed to take the full screen — cleared with a word, a wave, or an elbow.</p></div>
+    </div>
+   </div>
+  </section>
+
+  <section class="cs-sec" id="outcome">
+   <div class="sh"><span class="sh-n">05</span><span class="sh-t">Outcome</span><div class="sh-r"></div></div>
+   <div class="ob">
+    <span class="obl">Design POV</span>
+    <h2 class="obh">Removing the touchscreen was the <em>feature.</em></h2>
+    <p class="obp">The hardest part of this brief wasn't inventing new gestures — it was resisting the urge to keep the full recipe visible "just in case." Every constraint here (distance, dirty hands, competing timers) pointed to the same answer: show one decision at a time, and make the fallback inputs as dignified as the primary one, not an apologetic afterthought.</p>
+    <p class="obp">That's the same instinct behind Apple's best single-purpose interfaces — a boarding pass, a workout ring, a timer on a watch face. Reduce until only the next decision is left on screen.</p>
+   </div>
+  </section>
+
+  <div class="pn">
+   <a href="/uxrrenu/index.html#work" class="pnc">← Back to all work</a>
+  </div>
+
+ </div>
+</div>
+
+<footer>
+ <span class="f-copy">© 2026 Renu Nilangekar — UX Researcher</span>
+ <ul class="f-links">
+  <li><a href="/uxrrenu/index.html#work">Work</a></li>
+  <li><a href="/uxrrenu/index.html#about">About</a></li>
+ </ul>
+</footer>
+
+<script>
+(function(){
+ var steps = [
+  {icon:'🔥', text:'Preheat the oven to 220°C while you prep everything else.', ing:[], timer:null},
+  {icon:'🐟', text:'Pat the salmon fillets dry, then season generously with salt and pepper.', ing:[{name:'salmon fillet', per:1}], timer:null},
+  {icon:'🥔', text:'Toss the baby potatoes in olive oil, spread on a tray, and roast.', ing:[{name:'baby potatoes', base:300, unit:'g'}], timer:{label:'Potatoes', mins:15, demoSec:16}},
+  {icon:'🥦', text:'Add the asparagus, lemon, and garlic to the tray alongside the salmon.', ing:[{name:'asparagus', base:150, unit:'g'},{name:'garlic cloves', base:3}], timer:{label:'Salmon', mins:12, demoSec:13}},
+  {icon:'🌿', text:'Mix chilli flakes, parsley, and lemon zest together for the garnish.', ing:[{name:'lemon', base:1}], timer:null},
+  {icon:'🍽️', text:'Rest for two minutes, plate everything, and scatter over the garnish. Enjoy.', ing:[], timer:null}
+ ];
+
+ var state = {step:0, servings:2, timers:[]};
+ var baseServings = 2;
+
+ var els = {
+  icon: document.getElementById('stepIcon'),
+  text: document.getElementById('stepText'),
+  ing: document.getElementById('ingRow'),
+  count: document.getElementById('stepCount'),
+  fill: document.getElementById('progressFill'),
+  orb: document.getElementById('orb'),
+  dock: document.getElementById('timerDock'),
+  caption: document.getElementById('captionBubble'),
+  captionText: document.getElementById('captionText'),
+  servCount: document.getElementById('servCount'),
+  alert: document.getElementById('alertOverlay'),
+  alertIcon: document.getElementById('alertIcon'),
+  alertTitle: document.getElementById('alertTitle'),
+  screen: document.getElementById('screen')
+ };
+
+ function scaleAmt(base, per){
+  if (per) return Math.round(per * state.servings);
+  var v = base * (state.servings / baseServings);
+  return v % 1 === 0 ? v : Math.round(v * 10) / 10;
+ }
+
+ function render(){
+  var s = steps[state.step];
+  els.icon.textContent = s.icon;
+  els.text.textContent = s.text;
+  els.count.textContent = 'Step ' + (state.step + 1) + ' / ' + steps.length;
+  els.fill.style.width = ((state.step + 1) / steps.length * 100) + '%';
+  els.servCount.textContent = state.servings;
+
+  els.ing.innerHTML = '';
+  s.ing.forEach(function(i){
+   var amt = scaleAmt(i.base, i.per);
+   var chip = document.createElement('span');
+   chip.className = 'ing-chip';
+   chip.textContent = amt + (i.unit ? i.unit : '') + ' ' + i.name;
+   els.ing.appendChild(chip);
+  });
+
+  renderDock();
+ }
+
+ function renderDock(){
+  els.dock.innerHTML = '';
+  state.timers.forEach(function(t){
+   var chip = document.createElement('div');
+   chip.className = 'tchip' + (t.done ? ' done' : '');
+   var pct = t.done ? 0 : Math.max(0, 100 - (t.elapsed / t.demoSec * 100));
+   chip.innerHTML = '<span class="ring" style="--pct:' + pct + '"></span><span class="tchip-txt">' + t.label + ' · <span class="tchip-time">' + formatRemaining(t) + '</span></span>';
+   els.dock.appendChild(chip);
+  });
+ }
+
+ function formatRemaining(t){
+  if (t.done) return 'Ready';
+  var remainRatio = Math.max(0, 1 - (t.elapsed / t.demoSec));
+  var totalSec = t.mins * 60 * remainRatio;
+  var m = Math.floor(totalSec / 60);
+  var s = Math.floor(totalSec % 60);
+  return m + ':' + (s < 10 ? '0' : '') + s;
+ }
+
+ function startTimer(def){
+  var t = {label: def.label, mins: def.mins, demoSec: def.demoSec, elapsed: 0, done: false};
+  state.timers.push(t);
+  t.interval = setInterval(function(){
+   t.elapsed += 0.2;
+   if (t.elapsed >= t.demoSec && !t.done){
+    t.done = true;
+    clearInterval(t.interval);
+    showAlert('⏰', t.label + ' are ready');
+   }
+   renderDock();
+  }, 200);
+ }
+
+ function showAlert(icon, title){
+  els.alertIcon.textContent = icon;
+  els.alertTitle.textContent = title;
+  els.alert.classList.add('show');
+ }
+ els.alert.addEventListener('click', function(){ els.alert.classList.remove('show'); });
+
+ function showCaption(text){
+  els.captionText.textContent = text;
+  els.caption.classList.add('show');
+  els.orb.classList.add('listening');
+  clearTimeout(els.caption._t);
+  els.caption._t = setTimeout(function(){
+   els.caption.classList.remove('show');
+   els.orb.classList.remove('listening');
+  }, 1600);
+ }
+
+ function goTo(idx){
+  if (idx < 0 || idx >= steps.length) return;
+  state.step = idx;
+  render();
+  var s = steps[idx];
+  if (s.timer){
+   startTimer(s.timer);
+  }
+ }
+
+ function next(){ if (state.step < steps.length - 1) goTo(state.step + 1); }
+ function prev(){ if (state.step > 0) goTo(state.step - 1); }
+
+ document.getElementById('edgeLeft').addEventListener('click', function(){ els.alert.classList.remove('show'); prev(); });
+ document.getElementById('edgeRight').addEventListener('click', function(){ els.alert.classList.remove('show'); next(); });
+
+ document.getElementById('servMinus').addEventListener('click', function(){ if (state.servings > 1){ state.servings--; render(); } });
+ document.getElementById('servPlus').addEventListener('click', function(){ if (state.servings < 12){ state.servings++; render(); } });
+
+ document.querySelectorAll('[data-voice]').forEach(function(btn){
+  btn.addEventListener('click', function(){
+   var cmd = btn.getAttribute('data-voice');
+   if (cmd === 'next'){ showCaption('"Next step"'); setTimeout(next, 500); }
+   if (cmd === 'repeat'){ showCaption('"Repeat that"'); }
+   if (cmd === 'timer'){
+    var s = steps[state.step];
+    if (s.timer){ showCaption('"Set a timer for ' + s.timer.mins + ' minutes"'); setTimeout(function(){ startTimer(s.timer); }, 500); }
+    else { showCaption('No timer needed on this step'); }
+   }
+   if (cmd === 'serves4'){ showCaption('"Make this for 4"'); setTimeout(function(){ state.servings = 4; render(); }, 500); }
+  });
+ });
+
+ document.querySelectorAll('[data-gesture]').forEach(function(btn){
+  btn.addEventListener('click', function(){
+   var cmd = btn.getAttribute('data-gesture');
+   els.screen.style.transform = 'scale(0.995)';
+   setTimeout(function(){ els.screen.style.transform = ''; }, 150);
+   if (cmd === 'next') next(); else prev();
+  });
+ });
+
+ document.getElementById('hintElbow').addEventListener('click', function(){
+  document.getElementById('edgeRight').style.background = 'rgba(214,240,76,.25)';
+  setTimeout(function(){ document.getElementById('edgeRight').style.background = ''; }, 400);
+ });
+
+ document.getElementById('resetBtn').addEventListener('click', function(){
+  state.timers.forEach(function(t){ clearInterval(t.interval); });
+  state = {step:0, servings:2, timers:[]};
+  els.alert.classList.remove('show');
+  render();
+ });
+
+ render();
+
+ var toc = document.querySelectorAll('.toc a');
+ var secs = document.querySelectorAll('.cs-sec');
+ window.addEventListener('scroll', function(){
+  var pos = window.scrollY + 150;
+  secs.forEach(function(sec, i){
+   if (pos >= sec.offsetTop && pos < sec.offsetTop + sec.offsetHeight){
+    toc.forEach(function(a){ a.classList.remove('on'); });
+    if (toc[i]) toc[i].classList.add('on');
+   }
+  });
+ });
+})();
+</script>
+
+</body>
+</html>

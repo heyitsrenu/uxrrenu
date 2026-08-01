@@ -75,6 +75,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 @keyframes gradshift-a{0%{background-position:0% 50%,100% 50%,50% 0%;}100%{background-position:100% 50%,0% 50%,50% 100%;}}
 @keyframes gradshift-b{0%{background-position:100% 0%,0% 100%,50% 50%;}100%{background-position:0% 100%,100% 0%,50% 50%;}}
 @keyframes gradshift-c{0%{background-position:0% 100%,100% 0%,50% 50%;}100%{background-position:100% 0%,0% 100%,50% 50%;}}
+.pc-d .pcard-img{background-size:300% 300%;animation:gradshift-d 6.5s ease infinite alternate,cardIn .6s ease both 0s;display:flex;align-items:center;justify-content:center;}
+@keyframes gradshift-d{0%{background-position:0% 50%,100% 50%,50% 0%;}100%{background-position:100% 50%,0% 50%,50% 100%;}}
 
 .pcard-body{padding:2.2rem 2.8rem;display:flex;flex-direction:column;justify-content:center;}
 .pcard-meta{font-family:'Space Mono',monospace;font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);display:flex;align-items:center;flex-wrap:wrap;gap:.7rem;margin-bottom:.8rem;}
@@ -194,6 +196,19 @@ footer{border-top:1px solid var(--border);padding:1.6rem 4rem;display:flex;align
     <div class="sec-line"></div>
   </div>
   <ul class="proj-list">
+
+    <li class="pcard pc-d" onclick="window.location='cookalong-cs.html'" style="cursor:pointer;">
+      <div class="pcard-img" style="background:radial-gradient(ellipse 80% 80% at 20% 30%,#12201c,transparent),radial-gradient(ellipse 60% 60% at 80% 70%,#D6F04C,transparent),radial-gradient(ellipse 90% 90% at 50% 50%,#1b332b,#12201c);">
+        <span style="font-size:3.4rem;">🍳</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-meta"><span>Design Challenge</span><span class="pcard-type">Concept</span></div>
+        <h2 class="pcard-title">Cook-Along Mode</h2>
+        <p class="pcard-desc">Designing a zero-touch tablet interface for cooks with messy hands — voice, air-gesture, and elbow-target input, legible from 3–5 feet, with timers and ingredient scaling that never clutter the screen.</p>
+        <div class="pcard-tags"><span class="pcard-tag">Interaction Design</span><span class="pcard-tag">Tablet UI</span><span class="pcard-tag">Accessibility</span><span class="pcard-tag">Prototype</span></div>
+        <a href="/uxrrenu/cookalong-cs.html" class="pcard-link">View Case Study →</a>
+      </div>
+    </li>
 
     <li class="pcard pc-a" onclick="window.location='wms-cs.html'" style="cursor:pointer;">
       <div class="pcard-img"><img src="wms-homepage-new.jpg" alt="WMS Onboarding — Get Started checklist"/></div>
